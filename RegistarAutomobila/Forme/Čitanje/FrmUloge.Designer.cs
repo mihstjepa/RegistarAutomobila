@@ -32,11 +32,11 @@
             this.btnAzuriraj = new System.Windows.Forms.Button();
             this.btnObriši = new System.Windows.Forms.Button();
             this.btnNoviUnos = new System.Windows.Forms.Button();
-            this.dgvSviKorisnici = new System.Windows.Forms.DataGridView();
+            this.dgvUloge = new System.Windows.Forms.DataGridView();
             this.lblPregledSvihUloga = new System.Windows.Forms.Label();
             this.btnNatrag = new System.Windows.Forms.Button();
             this.labelNaslov = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSviKorisnici)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUloge)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAzuriraj
@@ -55,6 +55,7 @@
             this.btnAzuriraj.TabIndex = 29;
             this.btnAzuriraj.Text = "Ažuriraj";
             this.btnAzuriraj.UseVisualStyleBackColor = false;
+            this.btnAzuriraj.Click += new System.EventHandler(this.btnAzuriraj_Click);
             // 
             // btnObriši
             // 
@@ -72,6 +73,7 @@
             this.btnObriši.TabIndex = 28;
             this.btnObriši.Text = "Obriši";
             this.btnObriši.UseVisualStyleBackColor = false;
+            this.btnObriši.Click += new System.EventHandler(this.btnObriši_Click);
             // 
             // btnNoviUnos
             // 
@@ -89,15 +91,20 @@
             this.btnNoviUnos.TabIndex = 27;
             this.btnNoviUnos.Text = "Novi unos";
             this.btnNoviUnos.UseVisualStyleBackColor = false;
+            this.btnNoviUnos.Click += new System.EventHandler(this.btnNoviUnos_Click);
             // 
-            // dgvSviKorisnici
+            // dgvUloge
             // 
-            this.dgvSviKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSviKorisnici.Location = new System.Drawing.Point(351, 182);
-            this.dgvSviKorisnici.Name = "dgvSviKorisnici";
-            this.dgvSviKorisnici.RowTemplate.Height = 28;
-            this.dgvSviKorisnici.Size = new System.Drawing.Size(636, 263);
-            this.dgvSviKorisnici.TabIndex = 26;
+            this.dgvUloge.AllowUserToAddRows = false;
+            this.dgvUloge.AllowUserToDeleteRows = false;
+            this.dgvUloge.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUloge.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.dgvUloge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUloge.Location = new System.Drawing.Point(351, 182);
+            this.dgvUloge.Name = "dgvUloge";
+            this.dgvUloge.RowTemplate.Height = 28;
+            this.dgvUloge.Size = new System.Drawing.Size(636, 263);
+            this.dgvUloge.TabIndex = 26;
             // 
             // lblPregledSvihUloga
             // 
@@ -147,7 +154,7 @@
             this.Controls.Add(this.btnAzuriraj);
             this.Controls.Add(this.btnObriši);
             this.Controls.Add(this.btnNoviUnos);
-            this.Controls.Add(this.dgvSviKorisnici);
+            this.Controls.Add(this.dgvUloge);
             this.Controls.Add(this.lblPregledSvihUloga);
             this.Controls.Add(this.btnNatrag);
             this.Controls.Add(this.labelNaslov);
@@ -157,7 +164,7 @@
             this.Name = "FrmUloge";
             this.Text = "Upravljanje ulogama";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSviKorisnici)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUloge)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,7 +175,7 @@
         private System.Windows.Forms.Button btnAzuriraj;
         private System.Windows.Forms.Button btnObriši;
         private System.Windows.Forms.Button btnNoviUnos;
-        private System.Windows.Forms.DataGridView dgvSviKorisnici;
+        private System.Windows.Forms.DataGridView dgvUloge;
         private System.Windows.Forms.Label lblPregledSvihUloga;
         private System.Windows.Forms.Button btnNatrag;
         private System.Windows.Forms.Label labelNaslov;
