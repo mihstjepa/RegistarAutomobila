@@ -133,11 +133,24 @@ namespace RegistarAutomobila.Forme
             if (dgvUloge.SelectedRows.Count == 1)
             {
                 Uloga selektiranaUloga = DohvatiSelektiranuUlogu();
+                int idSelektiraneUloge = selektiranaUloga.Id;
 
-                db.Uloga.Attach(selektiranaUloga);
-                db.Uloga.Remove(selektiranaUloga);
-                db.SaveChanges();
-                MessageBox.Show("Brisanje uspješno!");
+                var upit = from k in db.Korisnik
+                           join u in db.Uloga on k.UlogaId equals idSelektiraneUloge
+                           select new { k.Korime};
+
+                // Provjerava da li postoje korisnici s tom ulogom.
+                if (upit.Count() > 0)
+                {
+                    MessageBox.Show("Ova uloga je dodjeljena postojećim članovima. Prije nego se uloga obriše, članovima se mora dodjeliti neka druga uloga.");
+                }
+                else
+                {
+                    db.Uloga.Attach(selektiranaUloga);
+                    db.Uloga.Remove(selektiranaUloga);
+                    db.SaveChanges();
+                    MessageBox.Show("Brisanje uspješno!");
+                }               
             }
             else
             {

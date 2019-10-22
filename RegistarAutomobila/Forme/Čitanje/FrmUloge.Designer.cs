@@ -101,8 +101,10 @@
             this.dgvUloge.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgvUloge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUloge.Location = new System.Drawing.Point(351, 182);
+            this.dgvUloge.MultiSelect = false;
             this.dgvUloge.Name = "dgvUloge";
             this.dgvUloge.RowTemplate.Height = 28;
+            this.dgvUloge.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUloge.Size = new System.Drawing.Size(636, 263);
             this.dgvUloge.TabIndex = 26;
             // 
