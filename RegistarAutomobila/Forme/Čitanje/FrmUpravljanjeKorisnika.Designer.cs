@@ -55,6 +55,7 @@
             this.btnAzuriraj.TabIndex = 22;
             this.btnAzuriraj.Text = "Ažuriraj";
             this.btnAzuriraj.UseVisualStyleBackColor = false;
+            this.btnAzuriraj.Click += new System.EventHandler(this.btnAzuriraj_Click);
             // 
             // btnObriši
             // 
@@ -72,6 +73,7 @@
             this.btnObriši.TabIndex = 21;
             this.btnObriši.Text = "Obriši";
             this.btnObriši.UseVisualStyleBackColor = false;
+            this.btnObriši.Click += new System.EventHandler(this.btnObriši_Click);
             // 
             // btnNoviUnos
             // 
@@ -89,6 +91,7 @@
             this.btnNoviUnos.TabIndex = 20;
             this.btnNoviUnos.Text = "Novi unos";
             this.btnNoviUnos.UseVisualStyleBackColor = false;
+            this.btnNoviUnos.Click += new System.EventHandler(this.btnNoviUnos_Click);
             // 
             // dgvSviKorisnici
             // 

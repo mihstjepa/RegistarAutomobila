@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forme\Ažuriranje\FrmAzuriranjeKorisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ažuriranje\FrmAzuriranjeKorisnika.Designer.cs">
+      <DependentUpon>FrmAzuriranjeKorisnika.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\Ažuriranje\FrmAzuriranjeMarke.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,12 @@
     </Compile>
     <Compile Include="Forme\Ažuriranje\FrmAzuriranjeUloge.Designer.cs">
       <DependentUpon>FrmAzuriranjeUloge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Dodavanje\FrmDodajKorisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Dodavanje\FrmDodajKorisnika.Designer.cs">
+      <DependentUpon>FrmDodajKorisnika.cs</DependentUpon>
     </Compile>
     <Compile Include="Forme\Dodavanje\FrmDodajMarku.cs">
       <SubType>Form</SubType>
@@ -156,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeUloge.resx">
       <DependentUpon>FrmAzuriranjeUloge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Dodavanje\FrmDodajKorisnika.resx">
+      <DependentUpon>FrmDodajKorisnika.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Dodavanje\FrmDodajMarku.resx">
       <DependentUpon>FrmDodajMarku.cs</DependentUpon>
