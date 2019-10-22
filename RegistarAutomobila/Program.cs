@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RegistarAutomobila.Forme;
+using RegistarAutomobila.Forme.Dodavanje;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace RegistarAutomobila
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FrmPrijava());
         }
     }
 }
