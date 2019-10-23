@@ -1,29 +1,5 @@
 Ova aplikacija napravljena je kao testni zadatak za radno mjesto .NET developer
 u poduzecu INPRO d.o.o.
 
-TEKST ZADATKA ZADAN OD STRANE PODUZECA
----------------------------------------------------
-Bitno je kod ovog zadatka drûati se nekih pravila, jer te stvari se koriste kod nas pa je dobro da se na njih koncentriraö: 
-ï	Baza podataka neka bude Microsoft SQL (imaö za skinuti besplatnu Express verziju od Microsofta. Pazi da si instaliraö i SQL Management Studio za upravljanje bazom podataka te direktno pisanje SQL upita. 
-ï	.NET okruûenje jezik moûe biti C# ili VB (Visual Studio pretpostavljam da imaö instaliran  od prije kao IDE alat)
-ï	za komunikaciju s bazom moûeö koristiti Entity Framework koji si rekao da imaö predznanje. 
-ï	Ostale alate koji ce ti olaköat ili poboljöat aplikaciju moûeö naravno koristiti po ûelji. 
-Aplikacija koju ceö napraviti je Registar automobila. Aplikacija ce ti se sastojati od dvije glavne cjeline. Jedna ce ti biti za unos odredenog modela, dok druga ce ti biti za inicijalni unos marke automobila. Znaci kod cjeline za unos marke automobila ceö unijeti, aûurirati i brisati ove podatke: 
-ï	Naziv marke (npr. Volkswagen, Mercedes, Alfa Romeo,Ö)
-ï	Drûava (iz koje drûave je proizvodac automobila)
-Druga cjelina  je za unos specificnog modela odredene marke. Ona ce imati ove podatke:
-ï	Marka (Odabir Marke automobila iz padajuceg izbornika. Za one sve koje smo unijeli u onoj prijaönjoj formi)
-ï	Model automobila (naziv modela npr. Passat, Giulia)
-ï	Godina proizvodnje 
-ï	Snaga motora (u KW)
-ï	Cijena (u kunama)
-Ta druga forma je i glavna forma i bitnija. Takoder svaki unos se isto moûe unositi, editirati i brisati. Dobro bi bilo i napraviti neko polje za pretraûivanje automobila, npr. Po nazivu marke, modelu, Ö..
-Eto ti si sad razmisli malo, kako ce izgledati aplikacija, npr. da li ce forma za unos biti zasebno ili u glavnoj formi gdje se i listaju podaci, onda kako ce izgledati baza podataka za nju. Dizajn i ostale stvari su na tebi. Bitno je da aplikacija radi, te naravno da nema exceptiona i da bude OOP, öto ce ti sam Entity Framework puno pomoci kod toga, jer on drugacije nit ne funkcionira ?
-Ukoliko ceö imati kakva pitanja i nejasnoce slobodno me kontaktiraö. 
-
-
-
-
-UPDATE:
-Funkcionalnost je proöirena dodavanjem Login funkcionalnosti te autentikacije korisnika sa pripadnim ulogama.
-Ovo originalno nije bio zahtjev poduzeca nego inicijativa autora.
+Vi≈°e informacija dostupno je na Wiki stranici ovog repozitorija:
+https://github.com/mihstjepa/RegistarAutomobila/wiki/Opis-aplikacije
