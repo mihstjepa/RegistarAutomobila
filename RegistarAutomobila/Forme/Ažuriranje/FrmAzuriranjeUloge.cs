@@ -35,7 +35,7 @@ namespace RegistarAutomobila.Forme.Ažuriranje
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu (FrmAzuriranjeUloge) i otvara prethodnu (FrmUloge).
+        /// Zatvara trenutnu formu i otvara prethodnu glavnu formu za uloge.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -59,13 +59,21 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             switch (porukaUpozorenja)
             {
                 case DialogResult.Yes:
-                    AzurirajUlogu();
-                    MessageBox.Show("Ažuriranje uspješno!");
+                    string errorPoruka = ProvjeraUnosa();
+                    if (errorPoruka == "")
+                    {                       
+                        AzurirajUlogu();
+                        MessageBox.Show("Ažuriranje uspješno!");
 
-                    FrmUloge forma = new FrmUloge();
-                    forma.ShowDialog();
-                    this.Hide();
-                    this.Close();
+                        FrmUloge forma = new FrmUloge();
+                        forma.ShowDialog();
+                        this.Hide();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(errorPoruka, "Greška kod unosa!");
+                    }
                     break;
 
                 case DialogResult.No:
@@ -78,16 +86,6 @@ namespace RegistarAutomobila.Forme.Ažuriranje
         /// </summary>
         private void AzurirajUlogu()
         {
-            string errorPoruka = "";
-
-            if (string.IsNullOrEmpty(txtBoxNaziv.Text))
-            {
-                errorPoruka = errorPoruka + $"Nije unesen naziv!\r\n";
-            }
-
-
-            if (errorPoruka == "")
-            {
                 Uloga selektiranaUloga = new Uloga()
                 {
                     Id = this.IdSelektiraneUloge,
@@ -97,12 +95,18 @@ namespace RegistarAutomobila.Forme.Ažuriranje
                 var postojecaUloga = db.Uloga.Find(selektiranaUloga.Id);
                 postojecaUloga.Naziv = txtBoxNaziv.Text;
                 db.SaveChanges();
-                
-            }
-            else
+        }
+
+        private string ProvjeraUnosa()
+        {
+            string errorPoruka = "";
+
+            if (string.IsNullOrEmpty(txtBoxNaziv.Text))
             {
-                MessageBox.Show(errorPoruka, "Greška kod unosa!");
+                errorPoruka = errorPoruka + $"Nije unesen naziv!\r\n";
             }
+
+            return errorPoruka;
         }
     }
 }
