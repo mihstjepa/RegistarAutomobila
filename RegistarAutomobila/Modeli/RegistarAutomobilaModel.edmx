@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RegistarAutomobilaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RegistarAutomobilaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Korisnik">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,7 +14,7 @@
           <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Lozinka" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UlogaId" Type="int" />
+          <Property Name="UlogaId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MarkaAutomobila">
           <Key>
@@ -30,7 +30,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="GodinaProizvodnje" Type="date" Nullable="false" />
+          <Property Name="GodinaProizvodnje" Type="int" Nullable="false" />
           <Property Name="SnagaMotora" Type="int" Nullable="false" />
           <Property Name="Cijena" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MarkaAutomobilaId" Type="int" />
@@ -44,7 +44,7 @@
           <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Korisnik_Uloga">
-          <End Role="Uloga" Type="Self.Uloga" Multiplicity="0..1" />
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
           <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Uloga">
@@ -99,58 +99,75 @@
             <End Role="ModelAutomobila" EntitySet="ModelAutomobila" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RegistarAutomobilaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Korisnik" EntityType="RegistarAutomobilaModel.Korisnik" />
+          <EntitySet Name="MarkaAutomobila" EntityType="RegistarAutomobilaModel.MarkaAutomobila" />
+          <EntitySet Name="ModelAutomobila" EntityType="RegistarAutomobilaModel.ModelAutomobila" />
+          <EntitySet Name="Uloga" EntityType="RegistarAutomobilaModel.Uloga" />
+          <AssociationSet Name="FK_Korisnik_Uloga" Association="RegistarAutomobilaModel.FK_Korisnik_Uloga">
+            <End Role="Uloga" EntitySet="Uloga" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelAutomobila_Korisnik" Association="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="ModelAutomobila" EntitySet="ModelAutomobila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelAutomobila_MarkaAutomobila" Association="RegistarAutomobilaModel.FK_ModelAutomobila_MarkaAutomobila">
+            <End Role="MarkaAutomobila" EntitySet="MarkaAutomobila" />
+            <End Role="ModelAutomobila" EntitySet="ModelAutomobila" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Korisnik">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Korime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Lozinka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UlogaId" Type="Int32" />
-          <NavigationProperty Name="Uloga" Relationship="Self.FK_Korisnik_Uloga" FromRole="Korisnik" ToRole="Uloga" />
-          <NavigationProperty Name="ModelAutomobila" Relationship="Self.FK_ModelAutomobila_Korisnik" FromRole="Korisnik" ToRole="ModelAutomobila" />
+          <Property Name="Korime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lozinka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UlogaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Uloga" Relationship="RegistarAutomobilaModel.FK_Korisnik_Uloga" FromRole="Korisnik" ToRole="Uloga" />
+          <NavigationProperty Name="ModelAutomobila" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik" FromRole="Korisnik" ToRole="ModelAutomobila" />
         </EntityType>
         <EntityType Name="MarkaAutomobila">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Drzava" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ModelAutomobila" Relationship="Self.FK_ModelAutomobila_MarkaAutomobila" FromRole="MarkaAutomobila" ToRole="ModelAutomobila" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Drzava" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ModelAutomobila" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_MarkaAutomobila" FromRole="MarkaAutomobila" ToRole="ModelAutomobila" />
         </EntityType>
         <EntityType Name="ModelAutomobila">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GodinaProizvodnje" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GodinaProizvodnje" Type="Int32" Nullable="false" />
           <Property Name="SnagaMotora" Type="Int32" Nullable="false" />
-          <Property Name="Cijena" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Cijena" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="MarkaAutomobilaId" Type="Int32" />
           <Property Name="KorisnikId" Type="Int32" />
-          <NavigationProperty Name="Korisnik" Relationship="Self.FK_ModelAutomobila_Korisnik" FromRole="ModelAutomobila" ToRole="Korisnik" />
-          <NavigationProperty Name="MarkaAutomobila" Relationship="Self.FK_ModelAutomobila_MarkaAutomobila" FromRole="ModelAutomobila" ToRole="MarkaAutomobila" />
+          <NavigationProperty Name="Korisnik" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik" FromRole="ModelAutomobila" ToRole="Korisnik" />
+          <NavigationProperty Name="MarkaAutomobila" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_MarkaAutomobila" FromRole="ModelAutomobila" ToRole="MarkaAutomobila" />
         </EntityType>
         <EntityType Name="Uloga">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Korisnik" Relationship="Self.FK_Korisnik_Uloga" FromRole="Uloga" ToRole="Korisnik" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Korisnik" Relationship="RegistarAutomobilaModel.FK_Korisnik_Uloga" FromRole="Uloga" ToRole="Korisnik" />
         </EntityType>
         <Association Name="FK_Korisnik_Uloga">
-          <End Role="Uloga" Type="Self.Uloga" Multiplicity="0..1" />
-          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <End Type="RegistarAutomobilaModel.Uloga" Role="Uloga" Multiplicity="1" />
+          <End Type="RegistarAutomobilaModel.Korisnik" Role="Korisnik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Uloga">
               <PropertyRef Name="Id" />
@@ -161,8 +178,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ModelAutomobila_Korisnik">
-          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="0..1" />
-          <End Role="ModelAutomobila" Type="Self.ModelAutomobila" Multiplicity="*" />
+          <End Type="RegistarAutomobilaModel.Korisnik" Role="Korisnik" Multiplicity="0..1" />
+          <End Type="RegistarAutomobilaModel.ModelAutomobila" Role="ModelAutomobila" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Korisnik">
               <PropertyRef Name="Id" />
@@ -173,10 +190,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ModelAutomobila_MarkaAutomobila">
-          <End Role="MarkaAutomobila" Type="Self.MarkaAutomobila" Multiplicity="0..1">
+          <End Type="RegistarAutomobilaModel.MarkaAutomobila" Role="MarkaAutomobila" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ModelAutomobila" Type="Self.ModelAutomobila" Multiplicity="*" />
+          <End Type="RegistarAutomobilaModel.ModelAutomobila" Role="ModelAutomobila" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MarkaAutomobila">
               <PropertyRef Name="Id" />
@@ -186,24 +203,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
-          <EntitySet Name="MarkaAutomobila" EntityType="Self.MarkaAutomobila" />
-          <EntitySet Name="ModelAutomobila" EntityType="Self.ModelAutomobila" />
-          <EntitySet Name="Uloga" EntityType="Self.Uloga" />
-          <AssociationSet Name="FK_Korisnik_Uloga" Association="Self.FK_Korisnik_Uloga">
-            <End Role="Uloga" EntitySet="Uloga" />
-            <End Role="Korisnik" EntitySet="Korisnik" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ModelAutomobila_Korisnik" Association="Self.FK_ModelAutomobila_Korisnik">
-            <End Role="Korisnik" EntitySet="Korisnik" />
-            <End Role="ModelAutomobila" EntitySet="ModelAutomobila" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ModelAutomobila_MarkaAutomobila" Association="Self.FK_ModelAutomobila_MarkaAutomobila">
-            <End Role="MarkaAutomobila" EntitySet="MarkaAutomobila" />
-            <End Role="ModelAutomobila" EntitySet="ModelAutomobila" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -213,42 +212,42 @@
           <EntitySetMapping Name="Korisnik">
             <EntityTypeMapping TypeName="RegistarAutomobilaModel.Korisnik">
               <MappingFragment StoreEntitySet="Korisnik">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Korime" ColumnName="Korime" />
-                <ScalarProperty Name="Ime" ColumnName="Ime" />
-                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
                 <ScalarProperty Name="UlogaId" ColumnName="UlogaId" />
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Korime" ColumnName="Korime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MarkaAutomobila">
             <EntityTypeMapping TypeName="RegistarAutomobilaModel.MarkaAutomobila">
               <MappingFragment StoreEntitySet="MarkaAutomobila">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ModelAutomobila">
             <EntityTypeMapping TypeName="RegistarAutomobilaModel.ModelAutomobila">
               <MappingFragment StoreEntitySet="ModelAutomobila">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-                <ScalarProperty Name="GodinaProizvodnje" ColumnName="GodinaProizvodnje" />
-                <ScalarProperty Name="SnagaMotora" ColumnName="SnagaMotora" />
-                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
-                <ScalarProperty Name="MarkaAutomobilaId" ColumnName="MarkaAutomobilaId" />
                 <ScalarProperty Name="KorisnikId" ColumnName="KorisnikId" />
+                <ScalarProperty Name="MarkaAutomobilaId" ColumnName="MarkaAutomobilaId" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="SnagaMotora" ColumnName="SnagaMotora" />
+                <ScalarProperty Name="GodinaProizvodnje" ColumnName="GodinaProizvodnje" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Uloga">
             <EntityTypeMapping TypeName="RegistarAutomobilaModel.Uloga">
               <MappingFragment StoreEntitySet="Uloga">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

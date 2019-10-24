@@ -17,59 +17,92 @@ namespace RegistarAutomobila.Forme
     {
         DBContext db = new DBContext();
 
+        /// <summary>
+        /// Konstruktor forme.
+        /// </summary>
         public FrmMarkeAutomobila()
         {
             InitializeComponent();
             OsvjeziPrikaz();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za Glavni izbornik.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {            
             FrmGlavniIzbornik formaGlavniIzbornik = new FrmGlavniIzbornik();
             formaGlavniIzbornik.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za dodavanje nove marke automobila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNoviUnos_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {           
             FrmDodajMarku formaDodajMarku = new FrmDodajMarku();
             formaDodajMarku.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu i otvara formu za ažuriranje marki automobila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAzuriraj_Click(object sender, EventArgs e)
         {
             if (dgvSveMarke.SelectedRows.Count == 1)
-            {
-                
-                MarkaAutomobila selektiranaMarka = DohvatiSelektiranuMarku();
-                this.Hide();
-                FrmAzuriranjeMarke forma = new FrmAzuriranjeMarke(selektiranaMarka);
+            {                
+                FrmAzuriranjeMarke forma = new FrmAzuriranjeMarke(DohvatiSelektiranuMarku());
                 forma.ShowDialog();
+                this.Hide();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Morate selektirati marku!");
+                MessageBox.Show("Morate selektirati samo jednu marku!");
             }
         }
 
+        /// <summary>
+        /// Briše selektiranu marku automobila iz baze podataka.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnObriši_Click(object sender, EventArgs e)
         {
-            DialogResult poruka = MessageBox.Show($"Sigurno želite izbrisati marku?", "Upozorenje!", MessageBoxButtons.YesNo);
-            switch (poruka)
+            if (dgvSveMarke.SelectedRows.Count == 1)
             {
-                case DialogResult.Yes:
-                    ObrisiMarku();                    
-                    OsvjeziPrikaz();                    
-                    break;
-                case DialogResult.No:
-                    break;
+                DialogResult poruka = MessageBox.Show($"Sigurno želite izbrisati ovu marku automobila?\r\nSvi modeli automobila ove marke će također biti izbrisani.", "Upozorenje!", MessageBoxButtons.YesNo);
+                switch (poruka)
+                {
+                    case DialogResult.Yes:
+                        ObrisiMarku();
+                        MessageBox.Show("Brisanje uspješno!");
+                        OsvjeziPrikaz();                    
+                        break;
+
+                    case DialogResult.No:
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Morate selektirati samo jedan model automobila!");
             }
         }
 
+        /// <summary>
+        /// Popunjava Data Grid View sa svim markama automobila iz baze.
+        /// </summary>
         private void OsvjeziPrikaz()
         {
             DBContext baza = new DBContext();
@@ -83,6 +116,9 @@ namespace RegistarAutomobila.Forme
             dgvSveMarke.Columns[2].HeaderText = "Država";
         }
 
+        /// <summary>
+        /// Briše selektiranu marku automobila u Data Grid View-u iz baze.
+        /// </summary>
         private void ObrisiMarku()
         {
             if (dgvSveMarke.SelectedRows.Count == 1)
@@ -91,19 +127,18 @@ namespace RegistarAutomobila.Forme
 
                 db.MarkaAutomobila.Attach(selektiranaMarka);
                 db.MarkaAutomobila.Remove(selektiranaMarka);
-                db.SaveChanges();
-                MessageBox.Show("Brisanje uspješno!");
+                db.SaveChanges();               
             }
             else
             {
                 MessageBox.Show("Niste selektirali člana!");
-            }
-            
-        }
-        private void AzurirajMarku()
-        {
+            }          
         }
 
+        /// <summary>
+        /// Dohvaća selektiranu marku automobila iz baze u obliku objekta.
+        /// </summary>
+        /// <returns>Objekt tipa "MarkaAutomobila".</returns>
         public MarkaAutomobila DohvatiSelektiranuMarku()
         {
             var _id = (int) dgvSveMarke.SelectedRows[0].Cells[0].Value;

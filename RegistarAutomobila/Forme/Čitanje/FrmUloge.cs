@@ -18,7 +18,7 @@ namespace RegistarAutomobila.Forme
         DBContext db = new DBContext();
 
         /// <summary>
-        /// Konstruktor forme FrmUloge.
+        /// Konstruktor forme.
         /// </summary>
         public FrmUloge()
         {
@@ -27,33 +27,33 @@ namespace RegistarAutomobila.Forme
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu (FrmUloge) i otvara prethodnu (FrmGlavniIzbornik)
+        /// Zatvara trenutnu formu i otvara formu za Glavni izbornik.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {            
             FrmGlavniIzbornik formaGlavniIzbornik = new FrmGlavniIzbornik();
             formaGlavniIzbornik.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu (FrmUloge) i otvara formu za dodavanje nove uloge (FrmDodavanjeUloge).
+        /// Zatvara trenutnu formu i otvara formu za dodavanje nove uloge.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNoviUnos_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {           
             FrmDodajUlogu forma = new FrmDodajUlogu();
             forma.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
         /// <summary>
-        /// Otvara formu za ažuriranje uloga (FrmAzuriranjeUloge) i prosljeđuje
+        /// Zatvara trenutnu formu, otvara formu za ažuriranje uloga (FrmAzuriranjeUloge) i prosljeđuje
         /// joj selektiranu ulogu iz dgvUloge.
         /// </summary>
         /// <param name="sender"></param>
@@ -63,34 +63,51 @@ namespace RegistarAutomobila.Forme
             if (dgvUloge.SelectedRows.Count == 1)
             {
                 Uloga selektiranaUloga = DohvatiSelektiranuUlogu();
-                this.Hide();
+                
                 FrmAzuriranjeUloge forma = new FrmAzuriranjeUloge(selektiranaUloga);
                 forma.ShowDialog();
+                this.Hide();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Morate selektirati ulogu!");
+                MessageBox.Show("Morate selektirati samo jednu ulogu!");
             }
         }
 
         /// <summary>
-        /// Briše selektiranu ulogu (dgvUloge) iz baze podataka (tablica "Uloga").
+        /// Briše selektiranu ulogu sa Data Grid View-a iz baze podataka.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnObriši_Click(object sender, EventArgs e)
         {
-            DialogResult poruka = MessageBox.Show($"Sigurno želite izbrisati ovu ulogu?", "Upozorenje!", MessageBoxButtons.YesNo);
-            switch (poruka)
+            if (dgvUloge.SelectedRows.Count == 1)
             {
-                case DialogResult.Yes:
-                    ObrisiUlogu();
-                    OsvjeziPrikaz();
-                    break;
-                case DialogResult.No:
-                    break;
+                DialogResult poruka = MessageBox.Show($"Sigurno želite izbrisati ovu ulogu?", "Upozorenje!", MessageBoxButtons.YesNo);
+                switch (poruka)
+                {
+                    case DialogResult.Yes:
+                        string errorPoruka = ProvjeraUnosa();
+                        if (errorPoruka == "")
+                        {
+                            ObrisiUlogu();
+                            MessageBox.Show("Brisanje uspješno!");
+                            OsvjeziPrikaz();                         
+                        }
+                        else
+                        {
+                            MessageBox.Show(errorPoruka);
+                        }
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
             }
+            else
+            {
+                MessageBox.Show("Morate selektirati samo jednu ulogu!");
+            }           
         }
 
 
@@ -130,32 +147,39 @@ namespace RegistarAutomobila.Forme
         /// </summary>
         private void ObrisiUlogu()
         {
-            if (dgvUloge.SelectedRows.Count == 1)
-            {
                 Uloga selektiranaUloga = DohvatiSelektiranuUlogu();
-                int idSelektiraneUloge = selektiranaUloga.Id;
 
-                var upit = from k in db.Korisnik
-                           join u in db.Uloga on k.UlogaId equals idSelektiraneUloge
-                           select new { k.Korime};
+                db.Uloga.Attach(selektiranaUloga);
+                db.Uloga.Remove(selektiranaUloga);
+                db.SaveChanges();                                                 
+        }
 
-                // Provjerava da li postoje korisnici s tom ulogom.
-                if (upit.Count() > 0)
-                {
-                    MessageBox.Show("Ova uloga je dodjeljena postojećim članovima. Prije nego se uloga obriše, članovima se mora dodjeliti neka druga uloga.");
-                }
-                else
-                {
-                    db.Uloga.Attach(selektiranaUloga);
-                    db.Uloga.Remove(selektiranaUloga);
-                    db.SaveChanges();
-                    MessageBox.Show("Brisanje uspješno!");
-                }               
-            }
-            else
+        /// <summary>
+        /// Provjerava da li postoje korisnici sa ulogom koja se želi obrisati.
+        /// Ako postoje, vraća poruku obavještenja.
+        /// </summary>
+        /// <returns>Poruka za ERROR messagebox.</returns>
+        private string ProvjeraUnosa()
+        {
+            string errorPoruka = "";
+
+            Uloga selektiranaUloga = DohvatiSelektiranuUlogu();
+
+
+            // Provjerava da li već postoje korisnici s tom ulogom.
+
+            int idSelektiraneUloge = selektiranaUloga.Id;
+
+            var upit = from k in db.Korisnik
+                       join u in db.Uloga on k.UlogaId equals idSelektiraneUloge
+                       select new { k.Korime };
+
+            if (upit.Count() > 0)
             {
-                MessageBox.Show("Niste selektirali člana!");
+                errorPoruka = "Ova uloga je dodjeljena postojećim članovima.\r\nPrije nego se uloga obriše, članovima se mora dodjeliti neka druga uloga.";
             }
+
+            return errorPoruka;
         }
     }
 }

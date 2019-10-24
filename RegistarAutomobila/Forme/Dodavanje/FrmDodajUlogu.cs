@@ -31,37 +31,35 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="e"></param>
         private void btnSpremi_Click(object sender, EventArgs e)
         {
-            string poruka = ProvjeraUnosa(txtBoxNazivUloge.Text);
+            string poruka = ProvjeraUnosa();
 
-            if (poruka != "")
+            if (poruka == "")
             {
-                MessageBox.Show(poruka);
-                OsvjeziPrikaz();
+                SpremiNovuUlogu();
+                MessageBox.Show("Uspješan unos!");
+
+                FrmUloge forma = new FrmUloge();
+                forma.ShowDialog();
+                this.Hide();
+                this.Close();
             }
             else
             {
-                Uloga novaUloga = new Uloga()
-                {
-                    Naziv = txtBoxNazivUloge.Text
-                };
-
-                db.Uloga.Add(novaUloga);
-                db.SaveChanges();
-                MessageBox.Show("Uspješan unos!");
+                MessageBox.Show(poruka);
                 OsvjeziPrikaz();
             }
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu (FrmDodajUlogu) i vraća se u prethodnu (FrmUloge).
+        /// Zatvara trenutnu formu i otvara glavnu formu za Uloge.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {           
             FrmUloge forma = new FrmUloge();
             forma.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
@@ -79,7 +77,7 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// </summary>
         /// <param name="_naziv">Naziv nove uloge.</param>
         /// <returns>Poruka za ERROR messagebox.</returns>
-        private string ProvjeraUnosa(string _naziv)
+        private string ProvjeraUnosa()
         {
             string poruka = "";
 
@@ -89,6 +87,17 @@ namespace RegistarAutomobila.Forme.Dodavanje
             }
 
             return poruka;
+        }
+
+        private void SpremiNovuUlogu()
+        {
+            Uloga novaUloga = new Uloga()
+            {
+                Naziv = txtBoxNazivUloge.Text
+            };
+
+            db.Uloga.Add(novaUloga);
+            db.SaveChanges();
         }
     }
 }

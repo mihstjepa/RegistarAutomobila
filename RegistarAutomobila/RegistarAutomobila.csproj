@@ -67,6 +67,12 @@
     <Compile Include="Forme\Ažuriranje\FrmAzuriranjeMarke.Designer.cs">
       <DependentUpon>FrmAzuriranjeMarke.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\Ažuriranje\FrmAzuriranjeModela.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ažuriranje\FrmAzuriranjeModela.Designer.cs">
+      <DependentUpon>FrmAzuriranjeModela.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\Ažuriranje\FrmAzuriranjeUloge.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </Compile>
     <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeMarke.resx">
       <DependentUpon>FrmAzuriranjeMarke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeModela.resx">
+      <DependentUpon>FrmAzuriranjeModela.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeUloge.resx">
       <DependentUpon>FrmAzuriranjeUloge.cs</DependentUpon>

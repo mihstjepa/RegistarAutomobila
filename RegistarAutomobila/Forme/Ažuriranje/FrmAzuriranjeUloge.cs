@@ -41,9 +41,9 @@ namespace RegistarAutomobila.Forme.Ažuriranje
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
         {
-            this.Hide();
             FrmUloge forma = new FrmUloge();
             forma.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
@@ -60,11 +60,14 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             {
                 case DialogResult.Yes:
                     AzurirajUlogu();
-                    this.Hide();
+                    MessageBox.Show("Ažuriranje uspješno!");
+
                     FrmUloge forma = new FrmUloge();
                     forma.ShowDialog();
+                    this.Hide();
                     this.Close();
                     break;
+
                 case DialogResult.No:
                     break;
             }
@@ -94,7 +97,7 @@ namespace RegistarAutomobila.Forme.Ažuriranje
                 var postojecaUloga = db.Uloga.Find(selektiranaUloga.Id);
                 postojecaUloga.Naziv = txtBoxNaziv.Text;
                 db.SaveChanges();
-                MessageBox.Show("Ažuriranje uspješno!");
+                
             }
             else
             {

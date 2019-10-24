@@ -78,13 +78,14 @@
             this.btnAzuriraj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAzuriraj.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAzuriraj.ForeColor = System.Drawing.Color.Black;
-            this.btnAzuriraj.Location = new System.Drawing.Point(725, 448);
+            this.btnAzuriraj.Location = new System.Drawing.Point(796, 448);
             this.btnAzuriraj.Margin = new System.Windows.Forms.Padding(4);
             this.btnAzuriraj.Name = "btnAzuriraj";
             this.btnAzuriraj.Size = new System.Drawing.Size(127, 39);
             this.btnAzuriraj.TabIndex = 15;
             this.btnAzuriraj.Text = "Ažuriraj";
             this.btnAzuriraj.UseVisualStyleBackColor = false;
+            this.btnAzuriraj.Click += new System.EventHandler(this.btnAzuriraj_Click);
             // 
             // btnObriši
             // 
@@ -95,13 +96,14 @@
             this.btnObriši.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObriši.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObriši.ForeColor = System.Drawing.Color.Black;
-            this.btnObriši.Location = new System.Drawing.Point(860, 448);
+            this.btnObriši.Location = new System.Drawing.Point(931, 448);
             this.btnObriši.Margin = new System.Windows.Forms.Padding(4);
             this.btnObriši.Name = "btnObriši";
             this.btnObriši.Size = new System.Drawing.Size(127, 39);
             this.btnObriši.TabIndex = 14;
             this.btnObriši.Text = "Obriši";
             this.btnObriši.UseVisualStyleBackColor = false;
+            this.btnObriši.Click += new System.EventHandler(this.btnObriši_Click);
             // 
             // btnNoviUnos
             // 
@@ -112,27 +114,33 @@
             this.btnNoviUnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoviUnos.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoviUnos.ForeColor = System.Drawing.Color.Black;
-            this.btnNoviUnos.Location = new System.Drawing.Point(351, 448);
+            this.btnNoviUnos.Location = new System.Drawing.Point(287, 448);
             this.btnNoviUnos.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUnos.Name = "btnNoviUnos";
             this.btnNoviUnos.Size = new System.Drawing.Size(127, 39);
             this.btnNoviUnos.TabIndex = 13;
             this.btnNoviUnos.Text = "Novi unos";
             this.btnNoviUnos.UseVisualStyleBackColor = false;
+            this.btnNoviUnos.Click += new System.EventHandler(this.btnNoviUnos_Click);
             // 
             // dgvSveMarke
             // 
+            this.dgvSveMarke.AllowUserToAddRows = false;
+            this.dgvSveMarke.AllowUserToDeleteRows = false;
+            this.dgvSveMarke.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSveMarke.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvSveMarke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSveMarke.Location = new System.Drawing.Point(351, 178);
+            this.dgvSveMarke.Location = new System.Drawing.Point(287, 178);
             this.dgvSveMarke.Name = "dgvSveMarke";
             this.dgvSveMarke.RowTemplate.Height = 28;
-            this.dgvSveMarke.Size = new System.Drawing.Size(636, 263);
+            this.dgvSveMarke.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSveMarke.Size = new System.Drawing.Size(771, 263);
             this.dgvSveMarke.TabIndex = 12;
             // 
             // lblPregledSvihModela
             // 
             this.lblPregledSvihModela.AutoSize = true;
-            this.lblPregledSvihModela.Location = new System.Drawing.Point(346, 146);
+            this.lblPregledSvihModela.Location = new System.Drawing.Point(282, 146);
             this.lblPregledSvihModela.Name = "lblPregledSvihModela";
             this.lblPregledSvihModela.Size = new System.Drawing.Size(226, 29);
             this.lblPregledSvihModela.TabIndex = 11;

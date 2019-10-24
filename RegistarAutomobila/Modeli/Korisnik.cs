@@ -25,7 +25,7 @@ namespace RegistarAutomobila.Modeli
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Lozinka { get; set; }
-        public Nullable<int> UlogaId { get; set; }
+        public int UlogaId { get; set; }
     
         public virtual Uloga Uloga { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

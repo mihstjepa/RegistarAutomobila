@@ -18,7 +18,7 @@ namespace RegistarAutomobila
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmDodajKorisnika());
+            Application.Run(new FrmPrijava());
         }
     }
 }

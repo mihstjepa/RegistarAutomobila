@@ -19,6 +19,10 @@ namespace RegistarAutomobila.Forme.Ažuriranje
         public string NazivSelektiraneMarke { get; set; }
         public string DrzavaSelektiraneMarke { get; set; }
 
+        /// <summary>
+        /// Konstruktor forme.
+        /// </summary>
+        /// <param name="selektiranaMarka"></param>
         public FrmAzuriranjeMarke(MarkaAutomobila selektiranaMarka)
         {
             InitializeComponent();
@@ -32,7 +36,81 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             txtBoxDrzava.Text = this.DrzavaSelektiraneMarke.ToString();
         }
 
+        /// <summary>
+        /// Ako su uneseni novi podaci za postojeću marku automobila,
+        /// onda sprema te podatke u bazu.
+        /// </summary>
         private void AzurirajMarku()
+        {
+            MarkaAutomobila selektiranaMarka = new MarkaAutomobila()
+            {
+                Id = this.ŠifraSelektiraneMarke,
+                Naziv = this.NazivSelektiraneMarke,
+                Drzava = this.DrzavaSelektiraneMarke
+            };
+
+            var postojecaMarka = db.MarkaAutomobila.Find(selektiranaMarka.Id);
+
+            /// AKO SU PRISUTNE PROMJENE ODREĐENIH TEXTBOX-OVA
+            if (postojecaMarka.Naziv != txtBoxNaziv.Text)
+            {
+                postojecaMarka.Naziv = txtBoxNaziv.Text;
+            }
+            if (postojecaMarka.Drzava != txtBoxDrzava.Text)
+            {
+                postojecaMarka.Drzava = txtBoxDrzava.Text;
+            }
+            db.SaveChanges();               
+        }
+
+        /// <summary>
+        /// Poziva metode za validaciju unesenih podataka i ažuriranje marki automobila u bazi.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSpremi_Click(object sender, EventArgs e)
+        {
+                DialogResult porukaUpozorenja = MessageBox.Show("Sigurno želite ažurirati selektiranu marku?", "Upozorenje!", MessageBoxButtons.YesNo);
+                switch (porukaUpozorenja)
+                {
+                    case DialogResult.Yes:
+                    string errorPoruka = ProvjeraUnosa();
+
+                    if (errorPoruka == "")
+                    {
+                        AzurirajMarku();
+                        MessageBox.Show("Ažuriranje uspješno!");
+
+                        FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
+                        forma.ShowDialog();
+                        this.Hide();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(errorPoruka, "Greška kod unosa!");
+                    }
+                    break;
+
+                case DialogResult.No:
+                        break;
+                }          
+        }
+
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara glavnu formu za Marke automobila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNatrag_Click(object sender, EventArgs e)
+        {         
+            FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
+            forma.ShowDialog();
+            this.Hide();
+            this.Close();
+        }
+
+        private string ProvjeraUnosa()
         {
             string errorPoruka = "";
 
@@ -45,56 +123,7 @@ namespace RegistarAutomobila.Forme.Ažuriranje
                 errorPoruka = errorPoruka + $"Nije unesena država!\r\n";
             }
 
-
-            if (errorPoruka == "")
-            {
-                MarkaAutomobila selektiranaMarka = new MarkaAutomobila()
-                {
-                    Id = this.ŠifraSelektiraneMarke,
-                    Naziv = this.NazivSelektiraneMarke,
-                    Drzava = this.DrzavaSelektiraneMarke
-                };
-
-                var postojecaMarka = db.MarkaAutomobila.Find(selektiranaMarka.Id);
-                postojecaMarka.Naziv = txtBoxNaziv.Text;
-                postojecaMarka.Drzava = txtBoxDrzava.Text;
-                db.SaveChanges();
-                MessageBox.Show("Ažuriranje uspješno!");
-                this.Hide();
-                FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
-                forma.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show(errorPoruka, "Greška kod unosa!");
-            }
-        }
-
-        private void btnSpremi_Click(object sender, EventArgs e)
-        {
-                DialogResult porukaUpozorenjaBrisanjaClana = MessageBox.Show("Sigurno želite ažurirati selektiranog člana?", "Upozorenje!", MessageBoxButtons.YesNo);
-                switch (porukaUpozorenjaBrisanjaClana)
-                {
-                    case DialogResult.Yes:
-                        AzurirajMarku();
-                        this.Hide();
-                        FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
-                        forma.ShowDialog();
-                        this.Close();
-                        break;
-                    case DialogResult.No:
-                        break;
-                }
-            
-        }
-
-        private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
-            forma.ShowDialog();
-            this.Close();
+            return errorPoruka;
         }
     }
 }

@@ -14,15 +14,24 @@ namespace RegistarAutomobila.Forme.Dodavanje
     public partial class FrmDodajMarku : Form
     {
         DBContext db = new DBContext();
+
+        /// <summary>
+        /// Konstruktor forme.
+        /// </summary>
         public FrmDodajMarku()
         {
             InitializeComponent();
+            OsvježiPrikaz();
         }
 
+        /// <summary>
+        /// Poziva metode za provjeru unesenih podataka i spremanje nove marke automobila u bazu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSpremi_Click(object sender, EventArgs e)
         {
-            string poruka = ProvjeraUnosa(txtBoxNaziv.Text, txtBoxDrzava.Text);
-
+            string poruka = ProvjeraUnosa();
             if (poruka != "")
             {
                 MessageBox.Show(poruka);
@@ -39,18 +48,30 @@ namespace RegistarAutomobila.Forme.Dodavanje
                 db.MarkaAutomobila.Add(novaMarka);
                 db.SaveChanges();
                 MessageBox.Show("Uspješan unos!");
-                OsvježiPrikaz();
+
+                FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
+                forma.ShowDialog();
+                this.Hide();
+                this.Close();
             }
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara glavnu formu za Marke automobila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {           
             FrmMarkeAutomobila formaMarke = new FrmMarkeAutomobila();
             formaMarke.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Postavlja vrijednost TextBox-ova na null ("").
+        /// </summary>
         private void OsvježiPrikaz()
         {
             txtBoxDrzava.Text = "";
@@ -63,14 +84,17 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="_naziv">Uneseni naziv marke.</param>
         /// <param name="_drzava">Unesena država porijekla marke.</param>
         /// <returns>Poruka za ERROR messagebox.</returns>
-        private string ProvjeraUnosa(string _naziv, string _drzava)
+        private string ProvjeraUnosa()
         {
             string poruka = "";
 
+            // Naziv
             if (String.IsNullOrEmpty(txtBoxNaziv.Text))
             {
                 poruka = poruka + $"Nije unesen naziv...\r\n";
             }
+
+            // Država
             if (String.IsNullOrEmpty(txtBoxDrzava.Text))
             {
                 poruka = poruka + $"Nije unesena država...\r\n";

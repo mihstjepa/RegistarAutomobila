@@ -89,6 +89,7 @@
             this.dgvSveMarke.MultiSelect = false;
             this.dgvSveMarke.Name = "dgvSveMarke";
             this.dgvSveMarke.RowTemplate.Height = 28;
+            this.dgvSveMarke.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSveMarke.Size = new System.Drawing.Size(636, 263);
             this.dgvSveMarke.TabIndex = 7;
             // 

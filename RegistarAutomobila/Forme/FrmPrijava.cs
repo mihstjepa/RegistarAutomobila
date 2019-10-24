@@ -31,21 +31,23 @@ namespace RegistarAutomobila.Forme
                 LoginPodaci.Id = DohvatiId(txtBoxKorime.Text, txtBoxLozinka.Text);
                 LoginPodaci.Korime = DohvatiKorime(txtBoxKorime.Text, txtBoxLozinka.Text);
                 LoginPodaci.Uloga = uloga;
-                this.Hide();
+                
                 FrmGlavniIzbornik glavniIzbornik = new FrmGlavniIzbornik();
                 glavniIzbornik.ShowDialog();
+                this.Hide();
                 this.Close();
             }
-            else if (provjeraUnosa == true && uloga == 2)
+            else if (provjeraUnosa == true)
             {
                 MessageBox.Show("Dobrodošli korisniče!");
 
                 LoginPodaci.Id = DohvatiId(txtBoxKorime.Text, txtBoxLozinka.Text);
                 LoginPodaci.Korime = txtBoxKorime.Text;
                 LoginPodaci.Uloga = DohvatiUlogu(txtBoxKorime.Text, txtBoxLozinka.Text);
-                this.Hide();
+                
                 FrmGlavniIzbornik glavniIzbornik = new FrmGlavniIzbornik();
                 glavniIzbornik.ShowDialog();
+                this.Hide();
                 this.Close();
             }
             else if (provjeraUnosa == false)

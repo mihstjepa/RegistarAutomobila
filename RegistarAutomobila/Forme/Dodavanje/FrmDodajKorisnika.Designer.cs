@@ -191,6 +191,7 @@
             // 
             // comboBoxOdabirUloge
             // 
+            this.comboBoxOdabirUloge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxOdabirUloge.FormattingEnabled = true;
             this.comboBoxOdabirUloge.Location = new System.Drawing.Point(531, 446);
             this.comboBoxOdabirUloge.Name = "comboBoxOdabirUloge";
@@ -229,7 +230,7 @@
             this.Controls.Add(this.groupBoxUnosKorisnika);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmDodajKorisnika";
             this.Text = "Dodavanje novih korisnika";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

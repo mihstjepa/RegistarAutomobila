@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="db0699516c214a4ba360a982424cf3d8" Name="Diagram1">
-        <EntityTypeShape EntityType="RegistarAutomobilaModel.Korisnik" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RegistarAutomobilaModel.MarkaAutomobila" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RegistarAutomobilaModel.ModelAutomobila" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RegistarAutomobilaModel.Uloga" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="RegistarAutomobilaModel.FK_Korisnik_Uloga" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistarAutomobilaModel.FK_ModelAutomobila_MarkaAutomobila" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RegistarAutomobilaModel.Korisnik" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="RegistarAutomobilaModel.MarkaAutomobila" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="RegistarAutomobilaModel.ModelAutomobila" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="RegistarAutomobilaModel.Uloga" Width="1.5" PointX="0.75" PointY="1.5" />
+        <AssociationConnector Association="RegistarAutomobilaModel.FK_Korisnik_Uloga" />
+        <AssociationConnector Association="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik" />
+        <AssociationConnector Association="RegistarAutomobilaModel.FK_ModelAutomobila_MarkaAutomobila" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,7 +16,7 @@ namespace RegistarAutomobila.Modeli
     {
         public int Id { get; set; }
         public string Naziv { get; set; }
-        public System.DateTime GodinaProizvodnje { get; set; }
+        public int GodinaProizvodnje { get; set; }
         public int SnagaMotora { get; set; }
         public decimal Cijena { get; set; }
         public Nullable<int> MarkaAutomobilaId { get; set; }

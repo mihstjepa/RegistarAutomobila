@@ -14,6 +14,11 @@ namespace RegistarAutomobila
 {
     public partial class FrmGlavniIzbornik : Form
     {
+        /// <summary>
+        /// Konstruktor forme koji inicijalizira formu, ispisuje korisničko ime
+        /// prijavljenog korisnika u gornji desni kut i sakriva gumbe za upravljanje
+        /// korisnicima i ulogama ovisno o ulozi prijavljenog korisnika.
+        /// </summary>
         public FrmGlavniIzbornik()
         {
             InitializeComponent();
@@ -26,43 +31,68 @@ namespace RegistarAutomobila
             }
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i vraća se na formu za prijavu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOdjaviSe_Click(object sender, EventArgs e)
         {            
-            this.Hide();
             FrmPrijava formaPrijava = new FrmPrijava();
             formaPrijava.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za Modele automobila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModeliAutomobila_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {            
             FrmModeliAutomobila formaModeli = new FrmModeliAutomobila();
             formaModeli.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za Marke automobila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMarkeAutomobila_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {            
             FrmMarkeAutomobila formaMarke = new FrmMarkeAutomobila();
             formaMarke.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za upravljanje korisnicima.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnKorisnici_Click(object sender, EventArgs e)
-        {            
-            this.Hide();
+        {                       
             FrmUpravljanjeKorisnika formaKorisnici = new FrmUpravljanjeKorisnika();
             formaKorisnici.ShowDialog();
+            this.Hide();
             this.Close();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za upravljanje ulogama korisnika.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUloge_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {            
             FrmUloge formaUloge = new FrmUloge();
             formaUloge.ShowDialog();
+            this.Hide();
             this.Close();
         }
     }
