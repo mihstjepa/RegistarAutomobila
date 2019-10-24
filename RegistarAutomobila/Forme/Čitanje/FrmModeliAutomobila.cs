@@ -111,45 +111,10 @@ namespace RegistarAutomobila.Forme
         /// Vraća "null" ako nije selektiran nijedan red u DataGridView-u.</returns>
         private ModelAutomobila DohvatiSelektiraniModel()
         {
-            // Selektirani podaci u Data Grid View-u
-            int _id = 0;
-            _id = (int)dgvSveMarke.SelectedRows[0].Cells[0].Value;
+            int _id = (int)dgvSveMarke.SelectedRows[0].Cells[0].Value;
+            ModelAutomobila selektiraniModel = db.ModelAutomobila.Find(_id);
 
-            var upit = from m in db.ModelAutomobila
-                       select new {
-                           m.Id,
-                           m.Naziv,
-                           m.GodinaProizvodnje,
-                           m.SnagaMotora,
-                           m.Cijena,
-                           m.MarkaAutomobilaId,
-                           m.KorisnikId
-                       };
-
-            ModelAutomobila selektiraniModel = new ModelAutomobila();
-
-            if (_id != 0)
-            {
-                foreach (var model in upit)
-                {
-                    if (model.Id == _id)
-                    {
-                        selektiraniModel.Id = model.Id;
-                        selektiraniModel.Naziv = model.Naziv;
-                        selektiraniModel.GodinaProizvodnje = model.GodinaProizvodnje;
-                        selektiraniModel.SnagaMotora = model.SnagaMotora;
-                        selektiraniModel.Cijena = model.Cijena;
-                        selektiraniModel.MarkaAutomobilaId = model.MarkaAutomobilaId;
-                        selektiraniModel.KorisnikId = model.KorisnikId;
-                    }
-                }
-
-                return selektiraniModel;
-            }
-            else
-            {
-                return null;
-            }
+            return selektiraniModel;
         }
 
         /// <summary>

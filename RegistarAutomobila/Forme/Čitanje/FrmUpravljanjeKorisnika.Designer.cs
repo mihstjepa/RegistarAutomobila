@@ -95,10 +95,15 @@
             // 
             // dgvSviKorisnici
             // 
+            this.dgvSviKorisnici.AllowUserToAddRows = false;
+            this.dgvSviKorisnici.AllowUserToDeleteRows = false;
+            this.dgvSviKorisnici.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSviKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSviKorisnici.Location = new System.Drawing.Point(351, 182);
+            this.dgvSviKorisnici.MultiSelect = false;
             this.dgvSviKorisnici.Name = "dgvSviKorisnici";
             this.dgvSviKorisnici.RowTemplate.Height = 28;
+            this.dgvSviKorisnici.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSviKorisnici.Size = new System.Drawing.Size(636, 263);
             this.dgvSviKorisnici.TabIndex = 19;
             // 

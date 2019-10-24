@@ -1,4 +1,5 @@
-﻿using RegistarAutomobila.Forme.Dodavanje;
+﻿using RegistarAutomobila.Forme.Ažuriranje;
+using RegistarAutomobila.Forme.Dodavanje;
 using RegistarAutomobila.Modeli;
 using System;
 using System.Collections.Generic;
@@ -25,44 +26,71 @@ namespace RegistarAutomobila.Forme
             OsvjeziPrikaz();
         }
 
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu Glavnog izbornika.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FrmGlavniIzbornik formaGlavniIzbornik = new FrmGlavniIzbornik();
-            formaGlavniIzbornik.ShowDialog();
-            this.Close();
-        }
-
-        private void btnNoviUnos_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FrmDodajKorisnika forma = new FrmDodajKorisnika();
+        {           
+            FrmGlavniIzbornik forma = new FrmGlavniIzbornik();
             forma.ShowDialog();
+            this.Hide();
             this.Close();
-        }
-
-        private void btnAzuriraj_Click(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
-        /// Poziva metodu za brisanje korisnika "ObrisiKorisnika()" i osvježava prikaz DataGridView-a.
+        /// Zatvara trenutnu formu i otvara formu za unos novih korisnika.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNoviUnos_Click(object sender, EventArgs e)
+        {           
+            FrmDodajKorisnika forma = new FrmDodajKorisnika();
+            forma.ShowDialog();
+            this.Hide();
+            this.Close();
+        }
+
+        /// <summary>
+        /// Zatvara trenutnu formu i otvara formu za ažuriranje korisnika.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAzuriraj_Click(object sender, EventArgs e)
+        {
+            FrmAzuriranjeKorisnika forma = new FrmAzuriranjeKorisnika();
+            forma.ShowDialog();
+            this.Hide();
+            this.Close();
+        }
+
+        /// <summary>
+        /// Poziva metodu za brisanje korisnika i osvježava prikaz DataGridView-a.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnObriši_Click(object sender, EventArgs e)
         {
-            DialogResult poruka = MessageBox.Show($"Sigurno želite izbrisati korisnika?", "Upozorenje!", MessageBoxButtons.YesNo);
-            switch (poruka)
+            if (dgvSviKorisnici.SelectedRows.Count == 1)
             {
-                case DialogResult.Yes:
-                    ObrisiKorisnika();
-                    OsvjeziPrikaz();
-                    break;
-                case DialogResult.No:
-                    break;
+                DialogResult poruka = MessageBox.Show($"Sigurno želite izbrisati ovog korisnika?", "Upozorenje!", MessageBoxButtons.YesNo);
+                switch (poruka)
+                {
+                    case DialogResult.Yes:
+                        ObrisiKorisnika();
+                        MessageBox.Show("Brisanje uspješno!");
+                        OsvjeziPrikaz();
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
             }
+            else
+            {
+                MessageBox.Show("Morate selektirati samo jednog korisnika!");
+            }
+            
         }
 
         /// <summary>
@@ -84,49 +112,15 @@ namespace RegistarAutomobila.Forme
         }
 
         /// <summary>
-        /// Dohvaća selektiranog korisnika u DataGridView-u kao objekt tipa "Korisnik".
+        /// Dohvaća selektiranog korisnika u DataGridView-u.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Objekt klase Korisnik.</returns>
         private Korisnik DohvatiSelektiranogKorisnika()
         {
-            var _id = (int)dgvSviKorisnici.SelectedRows[0].Cells[0].Value;
-            var _korime = (string)dgvSviKorisnici.SelectedRows[0].Cells[1].Value;
-            var _ime = (string)dgvSviKorisnici.SelectedRows[0].Cells[2].Value;
-            var _prezime = (string)dgvSviKorisnici.SelectedRows[0].Cells[3].Value;
-            var _lozinka = (string)dgvSviKorisnici.SelectedRows[0].Cells[4].Value;
-            var _nazivUloge = (string)dgvSviKorisnici.SelectedRows[0].Cells[5].Value;
-            int _ulogaId = 0;
+            int _id = (int)dgvSviKorisnici.SelectedRows[0].Cells[0].Value;
+            Korisnik selektiraniKorisnik = db.Korisnik.Find(_id);
 
-            var upit = from u in db.Uloga
-                       select new { u.Id, u.Naziv };
-
-            foreach (var uloga in upit)
-            {
-                if (uloga.Naziv == _nazivUloge)
-                {
-                    _ulogaId = uloga.Id;
-                }
-            }
-
-            if (_ulogaId != 0)
-            {
-                Korisnik selektiraniKorisnik = new Korisnik()
-                {
-                    Id = _id,
-                    Korime = _korime,
-                    Ime = _ime,
-                    Prezime = _prezime,
-                    Lozinka = _lozinka,
-                    UlogaId = _ulogaId
-                };
-
-                return selektiraniKorisnik;
-            }
-            else
-            {
-                return null;
-            }
-            
+            return selektiraniKorisnik;
         }
 
         /// <summary>
@@ -134,19 +128,11 @@ namespace RegistarAutomobila.Forme
         /// </summary>
         private void ObrisiKorisnika()
         {
-            if (dgvSviKorisnici.SelectedRows.Count == 1)
-            {
                 Korisnik selektiraniKorisnik = DohvatiSelektiranogKorisnika();
 
                 db.Korisnik.Attach(selektiraniKorisnik);
                 db.Korisnik.Remove(selektiraniKorisnik);
                 db.SaveChanges();
-                MessageBox.Show("Brisanje uspješno!");
-            }
-            else
-            {
-                MessageBox.Show("Niste selektirali korisnika!");
-            }
         }
     }
 }
