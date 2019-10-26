@@ -82,7 +82,8 @@ namespace RegistarAutomobila.Forme
 
         /// <summary>
         /// Popunjava Data Grid View sa view-om na bazu koji ispisuje sve modele, 
-        /// njihove marke i korisnike koji su unijeli marku u bazu.
+        /// njihove marke i korisnike koji su unijeli marku u bazu te postavlja
+        /// inicijalnu vrijednost filtera ComboBoxa za pretragu.
         /// </summary>
         private void OsvjeziPrikaz()
         {
@@ -102,6 +103,8 @@ namespace RegistarAutomobila.Forme
             dgvSveMarke.Columns[4].HeaderText = "Cijena (kn)";
             dgvSveMarke.Columns[5].HeaderText = "Marka";
             dgvSveMarke.Columns[6].HeaderText = "Unio korisnik";
+
+            comboBoxFilter.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -127,6 +130,125 @@ namespace RegistarAutomobila.Forme
             db.ModelAutomobila.Attach(selektiraniModel);
             db.ModelAutomobila.Remove(selektiraniModel);
             db.SaveChanges();
+        }
+
+        private void btnTrazi_Click(object sender, EventArgs e)
+        {
+            if (comboBoxFilter.SelectedItem.ToString() != null)
+            {
+                Trazi(comboBoxFilter.SelectedItem.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Morate odabrati filter za pretragu!");
+            }
+        }
+
+        private void btnOsvjeziPrikaz_Click(object sender, EventArgs e)
+        {
+            OsvjeziPrikaz();
+        }
+
+        private void Trazi(string odabraniFilter)
+        {
+            if (odabraniFilter == "Sve" || odabraniFilter == "")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where    model.Naziv.Contains(txtBoxKljucnaRijec.Text)  
+                                ||  model.GodinaProizvodnje.ToString().Contains(txtBoxKljucnaRijec.Text)
+                                ||  model.SnagaMotora.ToString().Contains(txtBoxKljucnaRijec.Text)
+                                ||  model.Cijena.ToString().Contains(txtBoxKljucnaRijec.Text)
+                                ||  marka.Naziv.Contains(txtBoxKljucnaRijec.Text)
+                                ||  korisnik.Korime.Contains(txtBoxKljucnaRijec.Text)
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Naziv")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where model.Naziv.Contains(txtBoxKljucnaRijec.Text)
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Godina proizvodnje")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where model.GodinaProizvodnje.ToString().Contains(txtBoxKljucnaRijec.Text)                                
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Snaga motora")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where model.SnagaMotora.ToString().Contains(txtBoxKljucnaRijec.Text)
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Cijena")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where model.Cijena.ToString().Contains(txtBoxKljucnaRijec.Text)
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Marka automobila")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where marka.Naziv.Contains(txtBoxKljucnaRijec.Text)
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Korisnik (unio)")
+            {
+                var upit = from model in db.ModelAutomobila
+                           join marka in db.MarkaAutomobila
+                           on model.MarkaAutomobilaId equals marka.Id
+                           join korisnik in db.Korisnik
+                           on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                           from korisnik in nazivKorisnika.DefaultIfEmpty()
+                           where korisnik.Korime.Contains(txtBoxKljucnaRijec.Text)
+                           select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+
+
+            dgvSveMarke.Columns[0].HeaderText = "Šifra";
+            dgvSveMarke.Columns[1].HeaderText = "Naziv";
+            dgvSveMarke.Columns[2].HeaderText = "Godina proizvodnje";
+            dgvSveMarke.Columns[3].HeaderText = "Snaga motora (kWH)";
+            dgvSveMarke.Columns[4].HeaderText = "Cijena (kn)";
+            dgvSveMarke.Columns[5].HeaderText = "Marka";
+            dgvSveMarke.Columns[6].HeaderText = "Unio korisnik";
         }
     }
 }

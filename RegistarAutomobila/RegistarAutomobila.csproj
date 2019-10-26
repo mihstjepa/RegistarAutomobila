@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\FilterKategorije.cs" />
     <Compile Include="Forme\Ažuriranje\FrmAzuriranjeKorisnika.cs">
       <SubType>Form</SubType>
     </Compile>
