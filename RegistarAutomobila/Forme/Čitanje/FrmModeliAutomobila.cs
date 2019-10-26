@@ -25,17 +25,14 @@ namespace RegistarAutomobila.Forme
 
         private void btnNatrag_Click(object sender, EventArgs e)
         {           
-            FrmGlavniIzbornik formaGlavniIzbornik = new FrmGlavniIzbornik();
-            formaGlavniIzbornik.ShowDialog();
-            this.Hide();
             this.Close();
         }
 
         private void btnNoviUnos_Click(object sender, EventArgs e)
-        {           
-            FrmDodajModel forma = new FrmDodajModel();
-            forma.ShowDialog();
+        {
             this.Hide();
+            FrmDodajModel forma = new FrmDodajModel();
+            forma.ShowDialog();            
             this.Close();
         }
 
@@ -43,9 +40,9 @@ namespace RegistarAutomobila.Forme
         {
             if (dgvSveMarke.SelectedRows.Count == 1)
             {
-                FrmAzuriranjeModela forma = new FrmAzuriranjeModela(DohvatiSelektiraniModel());
-                forma.ShowDialog();
                 this.Hide();
+                FrmAzuriranjeModela forma = new FrmAzuriranjeModela(DohvatiSelektiraniModel());
+                forma.ShowDialog();                
                 this.Close();
             }
             else

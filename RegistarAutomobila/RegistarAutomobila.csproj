@@ -169,6 +169,9 @@
     <Compile Include="Modeli\Uloga.cs">
       <DependentUpon>RegistarAutomobilaModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeKorisnika.resx">
+      <DependentUpon>FrmAzuriranjeKorisnika.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeMarke.resx">
       <DependentUpon>FrmAzuriranjeMarke.cs</DependentUpon>
     </EmbeddedResource>

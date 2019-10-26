@@ -27,15 +27,12 @@ namespace RegistarAutomobila.Forme
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu i otvara formu za Glavni izbornik.
+        /// Zatvara trenutnu formu.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
         {            
-            FrmGlavniIzbornik formaGlavniIzbornik = new FrmGlavniIzbornik();
-            formaGlavniIzbornik.ShowDialog();
-            this.Hide();
             this.Close();
         }
 
@@ -45,10 +42,10 @@ namespace RegistarAutomobila.Forme
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNoviUnos_Click(object sender, EventArgs e)
-        {           
-            FrmDodajUlogu forma = new FrmDodajUlogu();
-            forma.ShowDialog();
+        {
             this.Hide();
+            FrmDodajUlogu forma = new FrmDodajUlogu();
+            forma.ShowDialog();            
             this.Close();
         }
 
@@ -63,10 +60,10 @@ namespace RegistarAutomobila.Forme
             if (dgvUloge.SelectedRows.Count == 1)
             {
                 Uloga selektiranaUloga = DohvatiSelektiranuUlogu();
-                
-                FrmAzuriranjeUloge forma = new FrmAzuriranjeUloge(selektiranaUloga);
-                forma.ShowDialog();
+
                 this.Hide();
+                FrmAzuriranjeUloge forma = new FrmAzuriranjeUloge(selektiranaUloga);
+                forma.ShowDialog();                
                 this.Close();
             }
             else

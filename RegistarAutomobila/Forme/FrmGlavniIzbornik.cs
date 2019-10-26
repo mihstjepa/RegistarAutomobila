@@ -37,28 +37,26 @@ namespace RegistarAutomobila
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnOdjaviSe_Click(object sender, EventArgs e)
-        {            
-            FrmPrijava formaPrijava = new FrmPrijava();
-            formaPrijava.ShowDialog();
+        {
             this.Hide();
+            FrmPrijava formaPrijava = new FrmPrijava();
+            formaPrijava.ShowDialog();           
             this.Close();
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu i otvara formu za Modele automobila.
+        /// Otvara formu za Modele automobila.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnModeliAutomobila_Click(object sender, EventArgs e)
         {            
             FrmModeliAutomobila formaModeli = new FrmModeliAutomobila();
-            formaModeli.ShowDialog();
-            this.Hide();
-            this.Close();
+            formaModeli.ShowDialog();            
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu i otvara formu za Marke automobila.
+        /// Otvara formu za Marke automobila.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -66,12 +64,10 @@ namespace RegistarAutomobila
         {            
             FrmMarkeAutomobila formaMarke = new FrmMarkeAutomobila();
             formaMarke.ShowDialog();
-            this.Hide();
-            this.Close();
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu i otvara formu za upravljanje korisnicima.
+        /// Otvara formu za upravljanje korisnicima.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -79,12 +75,10 @@ namespace RegistarAutomobila
         {                       
             FrmUpravljanjeKorisnika formaKorisnici = new FrmUpravljanjeKorisnika();
             formaKorisnici.ShowDialog();
-            this.Hide();
-            this.Close();
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu i otvara formu za upravljanje ulogama korisnika.
+        /// Otvara formu za upravljanje ulogama korisnika.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -92,8 +86,6 @@ namespace RegistarAutomobila
         {            
             FrmUloge formaUloge = new FrmUloge();
             formaUloge.ShowDialog();
-            this.Hide();
-            this.Close();
         }
     }
 }

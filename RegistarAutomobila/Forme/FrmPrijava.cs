@@ -31,10 +31,10 @@ namespace RegistarAutomobila.Forme
                 LoginPodaci.Id = DohvatiId(txtBoxKorime.Text, txtBoxLozinka.Text);
                 LoginPodaci.Korime = DohvatiKorime(txtBoxKorime.Text, txtBoxLozinka.Text);
                 LoginPodaci.Uloga = uloga;
-                
-                FrmGlavniIzbornik glavniIzbornik = new FrmGlavniIzbornik();
-                glavniIzbornik.ShowDialog();
+
                 this.Hide();
+                FrmGlavniIzbornik glavniIzbornik = new FrmGlavniIzbornik();
+                glavniIzbornik.ShowDialog();                
                 this.Close();
             }
             else if (provjeraUnosa == true && uloga == null)

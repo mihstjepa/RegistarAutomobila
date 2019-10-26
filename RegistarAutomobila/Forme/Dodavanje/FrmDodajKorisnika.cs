@@ -30,10 +30,10 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {           
-            FrmUpravljanjeKorisnika forma = new FrmUpravljanjeKorisnika();
-            forma.ShowDialog();
+        {
             this.Hide();
+            FrmUpravljanjeKorisnika forma = new FrmUpravljanjeKorisnika();
+            forma.ShowDialog();            
             this.Close();
         }
 
@@ -44,7 +44,7 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="e"></param>
         private void btnSpremi_Click(object sender, EventArgs e)
         {
-            string poruka = ProvjeraUnosa(txtBoxKorime.Text, txtBoxIme.Text, txtBoxPrezime.Text, txtBoxLozinka.Text, txtBoxPotvrdaLozinke.Text);
+            string poruka = ProvjeraUnosa();
 
             if (poruka != "")
             {
@@ -65,7 +65,11 @@ namespace RegistarAutomobila.Forme.Dodavanje
                 db.Korisnik.Add(noviKorisnik);
                 db.SaveChanges();
                 MessageBox.Show("Uspješan unos!");
-                OsvjeziPrikaz();
+
+                this.Hide();
+                FrmUpravljanjeKorisnika forma = new FrmUpravljanjeKorisnika();
+                forma.ShowDialog();
+                this.Close();
             }
         }
 
@@ -110,48 +114,69 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="_lozinka">Lozinka novog korisnika.</param>
         /// <param name="_potvrdaLozinke">Potvrđena lozinka novog korisnika.</param>
         /// <returns>Poruka za ERROR messagebox.</returns>
-        private string ProvjeraUnosa(string _korime, string _ime, string _prezime, string _lozinka, string _potvrdaLozinke)
+        private string ProvjeraUnosa()
         {
             string poruka = "";
 
 
 
             var upit = from k in db.Korisnik
-                       select new { k.Korime };
+                       select new { k.Id, k.Korime };
 
-            foreach (var k in upit)
-            {
-                if (k.Korime.ToString() == _korime)
-                {
-                    poruka = poruka + $"Uneseno korisničko ime je zauzeto!\r\n";
-                }
-            }
+
+            //  KORISNIČKO IME           
+
             if (String.IsNullOrEmpty(txtBoxKorime.Text))
             {
                 poruka = poruka + $"Nije uneseno korisničko ime!\r\n";
             }
+            else if (txtBoxKorime.Text.Length > 50)
+            {
+                poruka = poruka + $"Korisničko ime smije imati maksimalno 50 znakova!\r\n";
+            }
+            else
+            {
+                foreach (var k in upit)
+                {
+                    //  Ako je korisničko ime zauzeto
+                    if (k.Korime.ToString() == txtBoxKorime.Text)
+                    {
+                        poruka = poruka + $"Uneseno korisničko ime je zauzeto!\r\n";
+                    }
+                }
+            }
+
+
+
+            //  IME
             if (String.IsNullOrEmpty(txtBoxIme.Text))
             {
                 poruka = poruka + $"Nije uneseno ime!\r\n";
             }
+            else if (txtBoxIme.Text.Length > 50)
+            {
+                poruka = poruka + $"Ime smije imati maksimalno 50 znakova!\r\n";
+            }
+
+            //  PREZIME
             if (String.IsNullOrEmpty(txtBoxPrezime.Text))
             {
                 poruka = poruka + $"Nije uneseno prezime!\r\n";
             }
+            else if (txtBoxPrezime.Text.Length > 50)
+            {
+                poruka = poruka + $"Prezime smije imati maksimalno 50 znakova!\r\n";
+            }
+
+            //  LOZINKA
             if (String.IsNullOrEmpty(txtBoxLozinka.Text))
             {
                 poruka = poruka + $"Nije unesena lozinka!\r\n";
             }
-            if (String.IsNullOrEmpty(txtBoxPotvrdaLozinke.Text))
+            else if (txtBoxLozinka.Text.Length > 50)
             {
-                poruka = poruka + $"Nije unesena potvrda lozinke!\r\n";
+                poruka = poruka + $"Lozinka smije imati maksimalno 50 znakova!\r\n";
             }
-            if (txtBoxLozinka.Text != txtBoxPotvrdaLozinke.Text)
-            {
-                poruka = poruka + $"Potvrđena lozinka nije ista kao prethodna!\r\n";
-            }
-
-            
 
             return poruka;
         }

@@ -49,9 +49,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
                 db.SaveChanges();
                 MessageBox.Show("Uspješan unos!");
 
-                FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
-                forma.ShowDialog();
                 this.Hide();
+                FrmMarkeAutomobila forma = new FrmMarkeAutomobila();
+                forma.ShowDialog();                
                 this.Close();
             }
         }
@@ -62,10 +62,10 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {           
-            FrmMarkeAutomobila formaMarke = new FrmMarkeAutomobila();
-            formaMarke.ShowDialog();
+        {
             this.Hide();
+            FrmMarkeAutomobila formaMarke = new FrmMarkeAutomobila();
+            formaMarke.ShowDialog();           
             this.Close();
         }
 
@@ -86,32 +86,42 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <returns>Poruka za ERROR messagebox.</returns>
         private string ProvjeraUnosa()
         {
-            string poruka = "";
+            string errorPoruka = "";
 
             var upit = from m in db.MarkaAutomobila
                        select new { m.Naziv };
 
-            foreach (var m in upit)
+            //  NAZIV           
+            if (string.IsNullOrEmpty(txtBoxNaziv.Text))
             {
-                if (m.Naziv.ToString() == txtBoxNaziv.Text)
+                errorPoruka = errorPoruka + $"Nije unesen naziv!\r\n";
+            }
+            else if (txtBoxNaziv.Text.Length > 50)
+            {
+                errorPoruka = errorPoruka + $"Naziv smije imati maksimalno 50 znakova!\r\n";
+            }
+            else
+            {
+                foreach (var m in upit)
                 {
-                    poruka = poruka + $"Već postoji marka automobila sa tim nazivom!\r\nUnesite neki drugi naziv!\r\n";
+                    if (m.Naziv.ToString() == txtBoxNaziv.Text)
+                    {
+                        errorPoruka = errorPoruka + $"Već postoji marka automobila sa tim nazivom!\r\nUnesite neki drugi naziv!\r\n";
+                    }
                 }
             }
 
-            // Naziv
-            if (String.IsNullOrEmpty(txtBoxNaziv.Text))
+            //  DRŽAVA
+            if (string.IsNullOrEmpty(txtBoxDrzava.Text))
             {
-                poruka = poruka + $"Nije unesen naziv...\r\n";
+                errorPoruka = errorPoruka + $"Nije unesena država!\r\n";
+            }
+            else if (txtBoxDrzava.Text.Length > 50)
+            {
+                errorPoruka = errorPoruka + $"Država smije imati maksimalno 50 znakova!\r\n";
             }
 
-            // Država
-            if (String.IsNullOrEmpty(txtBoxDrzava.Text))
-            {
-                poruka = poruka + $"Nije unesena država...\r\n";
-            }
-
-            return poruka;
+            return errorPoruka;
         }
     }
 }

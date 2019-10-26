@@ -41,9 +41,9 @@ namespace RegistarAutomobila.Forme.Ažuriranje
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
         {
-            FrmUloge forma = new FrmUloge();
-            forma.ShowDialog();
             this.Hide();
+            FrmUloge forma = new FrmUloge();
+            forma.ShowDialog();            
             this.Close();
         }
 
@@ -65,9 +65,9 @@ namespace RegistarAutomobila.Forme.Ažuriranje
                         AzurirajUlogu();
                         MessageBox.Show("Ažuriranje uspješno!");
 
-                        FrmUloge forma = new FrmUloge();
-                        forma.ShowDialog();
                         this.Hide();
+                        FrmUloge forma = new FrmUloge();
+                        forma.ShowDialog();                       
                         this.Close();
                     }
                     else
@@ -102,19 +102,23 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             string errorPoruka = "";
 
             var upit = from u in db.Uloga
-                       select new { u.Naziv };
+                       select new { u.Id, u.Naziv };
 
-            foreach (var u in upit)
-            {
-                if (u.Naziv.ToString() == txtBoxNaziv.Text)
-                {
-                    errorPoruka = errorPoruka + $"Već postoji uloga sa ovim nazivom!\r\nPokušajte neki drugi naziv!\r\n";
-                }
-            }
-
+            
+            //  NAZIV
             if (string.IsNullOrEmpty(txtBoxNaziv.Text))
             {
                 errorPoruka = errorPoruka + $"Nije unesen naziv!\r\n";
+            }
+            else
+            {
+                foreach (var u in upit)
+                {
+                    if (u.Naziv.ToString() == txtBoxNaziv.Text && u.Id != this.IdSelektiraneUloge)
+                    {
+                        errorPoruka = errorPoruka + $"Već postoji uloga sa ovim nazivom!\r\n";
+                    }
+                }
             }
 
             return errorPoruka;

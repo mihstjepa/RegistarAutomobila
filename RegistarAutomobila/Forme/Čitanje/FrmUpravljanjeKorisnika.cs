@@ -27,15 +27,12 @@ namespace RegistarAutomobila.Forme
         }
 
         /// <summary>
-        /// Zatvara trenutnu formu i otvara formu Glavnog izbornika.
+        /// Zatvara trenutnu formu.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
         {           
-            FrmGlavniIzbornik forma = new FrmGlavniIzbornik();
-            forma.ShowDialog();
-            this.Hide();
             this.Close();
         }
 
@@ -45,10 +42,10 @@ namespace RegistarAutomobila.Forme
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNoviUnos_Click(object sender, EventArgs e)
-        {           
-            FrmDodajKorisnika forma = new FrmDodajKorisnika();
-            forma.ShowDialog();
+        {
             this.Hide();
+            FrmDodajKorisnika forma = new FrmDodajKorisnika();
+            forma.ShowDialog();           
             this.Close();
         }
 
@@ -59,9 +56,9 @@ namespace RegistarAutomobila.Forme
         /// <param name="e"></param>
         private void btnAzuriraj_Click(object sender, EventArgs e)
         {
-            FrmAzuriranjeKorisnika forma = new FrmAzuriranjeKorisnika();
-            forma.ShowDialog();
             this.Hide();
+            FrmAzuriranjeKorisnika forma = new FrmAzuriranjeKorisnika(DohvatiSelektiranogKorisnika());
+            forma.ShowDialog();            
             this.Close();
         }
 

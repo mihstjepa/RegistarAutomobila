@@ -38,9 +38,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
                 SpremiNovuUlogu();
                 MessageBox.Show("Uspješan unos!");
 
-                FrmUloge forma = new FrmUloge();
-                forma.ShowDialog();
                 this.Hide();
+                FrmUloge forma = new FrmUloge();
+                forma.ShowDialog();               
                 this.Close();
             }
             else
@@ -56,10 +56,10 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {           
-            FrmUloge forma = new FrmUloge();
-            forma.ShowDialog();
+        {
             this.Hide();
+            FrmUloge forma = new FrmUloge();
+            forma.ShowDialog();            
             this.Close();
         }
 
@@ -84,17 +84,21 @@ namespace RegistarAutomobila.Forme.Dodavanje
             var upit = from u in db.Uloga
                        select new { u.Naziv };
 
-            foreach (var u in upit)
-            {
-                if (u.Naziv.ToString() == txtBoxNazivUloge.Text)
-                {
-                    poruka = poruka + $"Već postoji uloga sa ovim nazivom!\r\nPokušajte neki drugi naziv!\r\n";
-                }
-            }
-
+            
+            //  NAZIV
             if (String.IsNullOrEmpty(txtBoxNazivUloge.Text))
             {
                 poruka = poruka + $"Nije unesen naziv.\r\n";
+            }
+            else
+            {
+                foreach (var u in upit)
+                {
+                    if (u.Naziv.ToString() == txtBoxNazivUloge.Text)
+                    {
+                        poruka = poruka + $"Već postoji uloga sa ovim nazivom!\r\nPokušajte neki drugi naziv!\r\n";
+                    }
+                }
             }
 
             return poruka;

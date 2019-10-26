@@ -22,10 +22,10 @@ namespace RegistarAutomobila.Forme.Dodavanje
         }
 
         private void btnNatrag_Click(object sender, EventArgs e)
-        {           
-            FrmModeliAutomobila forma = new FrmModeliAutomobila();
-            forma.ShowDialog();
+        {
             this.Hide();
+            FrmModeliAutomobila forma = new FrmModeliAutomobila();
+            forma.ShowDialog();            
             this.Close();
         }
 
@@ -75,15 +75,23 @@ namespace RegistarAutomobila.Forme.Dodavanje
             {
                 poruka = poruka + $"Nije unesen naziv!\r\n";
             }
+            else if (txtBoxNaziv.Text.Length > 50)
+            {
+                poruka = poruka + $"Naziv smije imati maksimalno 50 znakova!\r\n";
+            }
 
             // Godina proizvodnje
             if (String.IsNullOrEmpty(txtBoxGodinaProizvodnje.Text))
             {
                 poruka = poruka + $"Nije unesena godina proizvodnje!\r\n";
             }
-            if (!int.TryParse(txtBoxGodinaProizvodnje.Text, out godinaProizvodnje))
+            else if (!int.TryParse(txtBoxGodinaProizvodnje.Text, out godinaProizvodnje))
             {
                 poruka = poruka + $"Godina proizvodnje mora biti cijeli broj!\r\n";
+            }
+            else if (txtBoxGodinaProizvodnje.Text.Length != 4)
+            {
+                poruka = poruka + $"Unesena godina mora imati točno 4 znamenke!\r\n";
             }
 
             // Cijena
@@ -91,9 +99,13 @@ namespace RegistarAutomobila.Forme.Dodavanje
             {
                 poruka = poruka + $"Nije unesena cijena!\r\n";
             }
-            if (!decimal.TryParse(txtBoxCijena.Text, out cijena))
+            else if (!decimal.TryParse(txtBoxCijena.Text, out cijena))
             {
                 poruka = poruka + $"Cijena mora biti decimalan broj u formatu 0.00!\r\n";
+            }
+            else if (decimal.Parse(txtBoxCijena.Text) > 999999999999999999)
+            {
+                poruka = poruka + $"Cijena mora biti manji iznos!\r\n";
             }
 
             // Snaga motora
@@ -101,9 +113,13 @@ namespace RegistarAutomobila.Forme.Dodavanje
             {
                 poruka = poruka + $"Nije unesena snaga motora!\r\n";
             }
-            if (!int.TryParse(txtBoxSnagaMotora.Text, out snagaMotora))
+            else if (!int.TryParse(txtBoxSnagaMotora.Text, out snagaMotora))
             {
                 poruka = poruka + $"Snaga motora mora biti cijeli broj!\r\n";
+            }
+            else if (int.Parse(txtBoxSnagaMotora.Text) > 10000)
+            {
+                poruka = poruka + $"Snaga motora mora biti manji broj!\r\n";
             }
 
             return poruka;
@@ -152,9 +168,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
                 SpremiNoviModel();
                 MessageBox.Show("Uspješan unos!");
 
-                FrmModeliAutomobila forma = new FrmModeliAutomobila();
-                forma.ShowDialog();
                 this.Hide();
+                FrmModeliAutomobila forma = new FrmModeliAutomobila();
+                forma.ShowDialog();               
                 this.Close();
             }
         }
