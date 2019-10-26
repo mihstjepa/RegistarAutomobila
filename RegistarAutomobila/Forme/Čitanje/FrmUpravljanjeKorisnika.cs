@@ -1,6 +1,7 @@
 ﻿using RegistarAutomobila.Forme.Ažuriranje;
 using RegistarAutomobila.Forme.Dodavanje;
 using RegistarAutomobila.Modeli;
+using RegistarAutomobila.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -132,6 +133,62 @@ namespace RegistarAutomobila.Forme
                 db.Korisnik.Attach(selektiraniKorisnik);
                 db.Korisnik.Remove(selektiraniKorisnik);
                 db.SaveChanges();
+        }
+
+        private void btnTrazi_Click(object sender, EventArgs e)
+        {
+            Trazi();
+        }
+
+        private void btnOsvjeziPrikaz_Click(object sender, EventArgs e)
+        {
+            OsvjeziPrikaz();
+        }
+
+        private void Trazi()
+        {
+            var upit = from k in db.Korisnik
+                       join u in db.Uloga
+                       on k.UlogaId equals u.Id into nazivUloge         //LEFT JOIN na Uloga.Id
+                       from u in nazivUloge.DefaultIfEmpty()
+                       where k.Ime.Contains(txtBoxKljucnaRijec.Text) 
+                       || k.Prezime.Contains(txtBoxKljucnaRijec.Text)
+                       || k.Korime.Contains(txtBoxKljucnaRijec.Text)
+                       || u.Naziv.Contains(txtBoxKljucnaRijec.Text)
+                       select new { k.Id, k.Korime, k.Ime, k.Prezime, k.Lozinka, u.Naziv };
+
+            List<KorisnikViewModel> listaRezultata = new List<KorisnikViewModel>();
+
+            //foreach (var item in upit)
+            //{
+            //    KorisnikViewModel row = new KorisnikViewModel()
+            //    {
+            //        Id = item.Id,
+            //        Korime = item.Korime,
+            //        Ime = item.Korime,
+            //        Prezime = item.Prezime,
+            //        Lozinka = item.Lozinka,
+            //        NazivUloge = item.Naziv
+            //    };
+            //    listaRezultata.Add(row);
+            //}
+
+            //foreach (KorisnikViewModel item in listaRezultata)
+            //{
+            //    if (item.Ime.Contains(txtBoxKljucnaRijec.Text))
+            //    {
+
+            //    }
+            //}
+
+            dgvSviKorisnici.DataSource = upit.ToList();
+
+            dgvSviKorisnici.Columns[0].HeaderText = "Šifra";
+            dgvSviKorisnici.Columns[1].HeaderText = "Korisničko ime";
+            dgvSviKorisnici.Columns[2].HeaderText = "Ime";
+            dgvSviKorisnici.Columns[3].HeaderText = "Prezime";
+            dgvSviKorisnici.Columns[4].HeaderText = "Lozinka";
+            dgvSviKorisnici.Columns[5].HeaderText = "Naziv uloge";
         }
     }
 }

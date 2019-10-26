@@ -169,6 +169,7 @@
     <Compile Include="Modeli\Uloga.cs">
       <DependentUpon>RegistarAutomobilaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\KorisnikViewModel.cs" />
     <EmbeddedResource Include="Forme\Ažuriranje\FrmAzuriranjeKorisnika.resx">
       <DependentUpon>FrmAzuriranjeKorisnika.cs</DependentUpon>
     </EmbeddedResource>

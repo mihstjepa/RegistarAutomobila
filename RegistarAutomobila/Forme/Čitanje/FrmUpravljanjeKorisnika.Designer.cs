@@ -33,9 +33,11 @@
             this.btnObriši = new System.Windows.Forms.Button();
             this.btnNoviUnos = new System.Windows.Forms.Button();
             this.dgvSviKorisnici = new System.Windows.Forms.DataGridView();
-            this.lblPregledSvihKorisnika = new System.Windows.Forms.Label();
             this.btnNatrag = new System.Windows.Forms.Button();
             this.labelNaslov = new System.Windows.Forms.Label();
+            this.txtBoxKljucnaRijec = new System.Windows.Forms.TextBox();
+            this.btnTrazi = new System.Windows.Forms.Button();
+            this.btnOsvjeziPrikaz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSviKorisnici)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +50,7 @@
             this.btnAzuriraj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAzuriraj.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAzuriraj.ForeColor = System.Drawing.Color.Black;
-            this.btnAzuriraj.Location = new System.Drawing.Point(725, 452);
+            this.btnAzuriraj.Location = new System.Drawing.Point(725, 498);
             this.btnAzuriraj.Margin = new System.Windows.Forms.Padding(4);
             this.btnAzuriraj.Name = "btnAzuriraj";
             this.btnAzuriraj.Size = new System.Drawing.Size(127, 39);
@@ -66,7 +68,7 @@
             this.btnObriši.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObriši.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObriši.ForeColor = System.Drawing.Color.Black;
-            this.btnObriši.Location = new System.Drawing.Point(860, 452);
+            this.btnObriši.Location = new System.Drawing.Point(860, 498);
             this.btnObriši.Margin = new System.Windows.Forms.Padding(4);
             this.btnObriši.Name = "btnObriši";
             this.btnObriši.Size = new System.Drawing.Size(127, 39);
@@ -84,7 +86,7 @@
             this.btnNoviUnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoviUnos.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoviUnos.ForeColor = System.Drawing.Color.Black;
-            this.btnNoviUnos.Location = new System.Drawing.Point(351, 452);
+            this.btnNoviUnos.Location = new System.Drawing.Point(351, 498);
             this.btnNoviUnos.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUnos.Name = "btnNoviUnos";
             this.btnNoviUnos.Size = new System.Drawing.Size(127, 39);
@@ -99,22 +101,13 @@
             this.dgvSviKorisnici.AllowUserToDeleteRows = false;
             this.dgvSviKorisnici.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSviKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSviKorisnici.Location = new System.Drawing.Point(351, 182);
+            this.dgvSviKorisnici.Location = new System.Drawing.Point(351, 228);
             this.dgvSviKorisnici.MultiSelect = false;
             this.dgvSviKorisnici.Name = "dgvSviKorisnici";
             this.dgvSviKorisnici.RowTemplate.Height = 28;
             this.dgvSviKorisnici.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSviKorisnici.Size = new System.Drawing.Size(636, 263);
             this.dgvSviKorisnici.TabIndex = 19;
-            // 
-            // lblPregledSvihKorisnika
-            // 
-            this.lblPregledSvihKorisnika.AutoSize = true;
-            this.lblPregledSvihKorisnika.Location = new System.Drawing.Point(346, 150);
-            this.lblPregledSvihKorisnika.Name = "lblPregledSvihKorisnika";
-            this.lblPregledSvihKorisnika.Size = new System.Drawing.Size(242, 29);
-            this.lblPregledSvihKorisnika.TabIndex = 18;
-            this.lblPregledSvihKorisnika.Text = "Pregled svih korisnika";
             // 
             // btnNatrag
             // 
@@ -146,17 +139,62 @@
             this.labelNaslov.TabIndex = 16;
             this.labelNaslov.Text = "Inpro Automobili";
             // 
+            // txtBoxKljucnaRijec
+            // 
+            this.txtBoxKljucnaRijec.Location = new System.Drawing.Point(620, 159);
+            this.txtBoxKljucnaRijec.Name = "txtBoxKljucnaRijec";
+            this.txtBoxKljucnaRijec.Size = new System.Drawing.Size(233, 36);
+            this.txtBoxKljucnaRijec.TabIndex = 23;
+            // 
+            // btnTrazi
+            // 
+            this.btnTrazi.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnTrazi.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnTrazi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnTrazi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            this.btnTrazi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTrazi.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrazi.ForeColor = System.Drawing.Color.Black;
+            this.btnTrazi.Location = new System.Drawing.Point(860, 159);
+            this.btnTrazi.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTrazi.Name = "btnTrazi";
+            this.btnTrazi.Size = new System.Drawing.Size(127, 36);
+            this.btnTrazi.TabIndex = 24;
+            this.btnTrazi.Text = "Traži";
+            this.btnTrazi.UseVisualStyleBackColor = false;
+            this.btnTrazi.Click += new System.EventHandler(this.btnTrazi_Click);
+            // 
+            // btnOsvjeziPrikaz
+            // 
+            this.btnOsvjeziPrikaz.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnOsvjeziPrikaz.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnOsvjeziPrikaz.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnOsvjeziPrikaz.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            this.btnOsvjeziPrikaz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOsvjeziPrikaz.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOsvjeziPrikaz.ForeColor = System.Drawing.Color.Black;
+            this.btnOsvjeziPrikaz.Location = new System.Drawing.Point(351, 159);
+            this.btnOsvjeziPrikaz.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOsvjeziPrikaz.Name = "btnOsvjeziPrikaz";
+            this.btnOsvjeziPrikaz.Size = new System.Drawing.Size(148, 36);
+            this.btnOsvjeziPrikaz.TabIndex = 25;
+            this.btnOsvjeziPrikaz.Text = "Osvježi prikaz";
+            this.btnOsvjeziPrikaz.UseVisualStyleBackColor = false;
+            this.btnOsvjeziPrikaz.Click += new System.EventHandler(this.btnOsvjeziPrikaz_Click);
+            // 
             // FrmUpravljanjeKorisnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1820, 949);
+            this.Controls.Add(this.btnOsvjeziPrikaz);
+            this.Controls.Add(this.btnTrazi);
+            this.Controls.Add(this.txtBoxKljucnaRijec);
             this.Controls.Add(this.btnAzuriraj);
             this.Controls.Add(this.btnObriši);
             this.Controls.Add(this.btnNoviUnos);
             this.Controls.Add(this.dgvSviKorisnici);
-            this.Controls.Add(this.lblPregledSvihKorisnika);
             this.Controls.Add(this.btnNatrag);
             this.Controls.Add(this.labelNaslov);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -177,8 +215,10 @@
         private System.Windows.Forms.Button btnObriši;
         private System.Windows.Forms.Button btnNoviUnos;
         private System.Windows.Forms.DataGridView dgvSviKorisnici;
-        private System.Windows.Forms.Label lblPregledSvihKorisnika;
         private System.Windows.Forms.Button btnNatrag;
         private System.Windows.Forms.Label labelNaslov;
+        private System.Windows.Forms.TextBox txtBoxKljucnaRijec;
+        private System.Windows.Forms.Button btnTrazi;
+        private System.Windows.Forms.Button btnOsvjeziPrikaz;
     }
 }
