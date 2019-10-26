@@ -14,7 +14,7 @@
           <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Lozinka" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UlogaId" Type="int" Nullable="false" />
+          <Property Name="UlogaId" Type="int" />
         </EntityType>
         <EntityType Name="MarkaAutomobila">
           <Key>
@@ -44,7 +44,7 @@
           <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Korisnik_Uloga">
-          <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="0..1" />
           <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Uloga">
@@ -130,7 +130,7 @@
           <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Lozinka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UlogaId" Type="Int32" Nullable="false" />
+          <Property Name="UlogaId" Type="Int32" />
           <NavigationProperty Name="Uloga" Relationship="RegistarAutomobilaModel.FK_Korisnik_Uloga" FromRole="Korisnik" ToRole="Uloga" />
           <NavigationProperty Name="ModelAutomobila" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik" FromRole="Korisnik" ToRole="ModelAutomobila" />
         </EntityType>
@@ -166,7 +166,7 @@
           <NavigationProperty Name="Korisnik" Relationship="RegistarAutomobilaModel.FK_Korisnik_Uloga" FromRole="Uloga" ToRole="Korisnik" />
         </EntityType>
         <Association Name="FK_Korisnik_Uloga">
-          <End Type="RegistarAutomobilaModel.Uloga" Role="Uloga" Multiplicity="1" />
+          <End Type="RegistarAutomobilaModel.Uloga" Role="Uloga" Multiplicity="0..1" />
           <End Type="RegistarAutomobilaModel.Korisnik" Role="Korisnik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Uloga">
@@ -203,7 +203,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

@@ -30,10 +30,10 @@ namespace RegistarAutomobila.Forme.Dodavanje
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNatrag_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        {           
             FrmUpravljanjeKorisnika forma = new FrmUpravljanjeKorisnika();
             forma.ShowDialog();
+            this.Hide();
             this.Close();
         }
 

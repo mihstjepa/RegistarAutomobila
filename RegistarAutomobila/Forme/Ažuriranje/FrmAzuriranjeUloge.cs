@@ -101,6 +101,17 @@ namespace RegistarAutomobila.Forme.Ažuriranje
         {
             string errorPoruka = "";
 
+            var upit = from u in db.Uloga
+                       select new { u.Naziv };
+
+            foreach (var u in upit)
+            {
+                if (u.Naziv.ToString() == txtBoxNaziv.Text)
+                {
+                    errorPoruka = errorPoruka + $"Već postoji uloga sa ovim nazivom!\r\nPokušajte neki drugi naziv!\r\n";
+                }
+            }
+
             if (string.IsNullOrEmpty(txtBoxNaziv.Text))
             {
                 errorPoruka = errorPoruka + $"Nije unesen naziv!\r\n";

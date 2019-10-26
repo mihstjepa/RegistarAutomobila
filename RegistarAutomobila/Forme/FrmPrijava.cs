@@ -37,6 +37,12 @@ namespace RegistarAutomobila.Forme
                 this.Hide();
                 this.Close();
             }
+            else if (provjeraUnosa == true && uloga == null)
+            {
+                MessageBox.Show("Vaš korisnički račun nema dodjeljenu ulogu!\r\nObratite se administratoru za pomoć!");
+                OsvjeziPrikaz();
+            }
+            // Ako je korisnik bilo koja druga uloga
             else if (provjeraUnosa == true)
             {
                 MessageBox.Show("Dobrodošli korisniče!");

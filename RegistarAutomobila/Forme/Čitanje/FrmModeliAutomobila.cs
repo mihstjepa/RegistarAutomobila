@@ -90,8 +90,11 @@ namespace RegistarAutomobila.Forme
         private void OsvjeziPrikaz()
         {
             var upit = from model in db.ModelAutomobila 
-                       join marka in db.MarkaAutomobila on model.MarkaAutomobilaId equals marka.Id
-                       join korisnik in db.Korisnik on model.KorisnikId equals korisnik.Id
+                       join marka in db.MarkaAutomobila 
+                       on model.MarkaAutomobilaId equals marka.Id
+                       join korisnik in db.Korisnik 
+                       on model.KorisnikId equals korisnik.Id into nazivKorisnika
+                       from korisnik in nazivKorisnika.DefaultIfEmpty()
                        select new { model.Id, nazivModela = model.Naziv, model.GodinaProizvodnje, model.SnagaMotora, model.Cijena, nazivMarke = marka.Naziv, korisnik.Korime };
             dgvSveMarke.DataSource = upit.ToList();
 

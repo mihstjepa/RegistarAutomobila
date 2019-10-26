@@ -88,6 +88,17 @@ namespace RegistarAutomobila.Forme.Dodavanje
         {
             string poruka = "";
 
+            var upit = from m in db.MarkaAutomobila
+                       select new { m.Naziv };
+
+            foreach (var m in upit)
+            {
+                if (m.Naziv.ToString() == txtBoxNaziv.Text)
+                {
+                    poruka = poruka + $"Već postoji marka automobila sa tim nazivom!\r\nUnesite neki drugi naziv!\r\n";
+                }
+            }
+
             // Naziv
             if (String.IsNullOrEmpty(txtBoxNaziv.Text))
             {

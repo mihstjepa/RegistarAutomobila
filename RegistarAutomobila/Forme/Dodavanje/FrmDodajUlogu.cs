@@ -81,6 +81,17 @@ namespace RegistarAutomobila.Forme.Dodavanje
         {
             string poruka = "";
 
+            var upit = from u in db.Uloga
+                       select new { u.Naziv };
+
+            foreach (var u in upit)
+            {
+                if (u.Naziv.ToString() == txtBoxNazivUloge.Text)
+                {
+                    poruka = poruka + $"Već postoji uloga sa ovim nazivom!\r\nPokušajte neki drugi naziv!\r\n";
+                }
+            }
+
             if (String.IsNullOrEmpty(txtBoxNazivUloge.Text))
             {
                 poruka = poruka + $"Nije unesen naziv.\r\n";

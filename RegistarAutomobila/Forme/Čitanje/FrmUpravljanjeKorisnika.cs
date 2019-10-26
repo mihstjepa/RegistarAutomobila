@@ -99,7 +99,9 @@ namespace RegistarAutomobila.Forme
         private void OsvjeziPrikaz()
         {
             var upit = from k in db.Korisnik
-                       join u in db.Uloga on k.UlogaId equals u.Id
+                       join u in db.Uloga 
+                       on k.UlogaId equals u.Id into nazivUloge         //LEFT JOIN na Uloga.Id
+                       from u in nazivUloge.DefaultIfEmpty()
                        select new { k.Id, k.Korime, k.Ime, k.Prezime, k.Lozinka, u.Naziv };
             dgvSviKorisnici.DataSource = upit.ToList();
 
