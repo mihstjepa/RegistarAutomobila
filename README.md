@@ -6,6 +6,7 @@ Ova WinForms aplikacija izrađena je u sklopu testiranja za radno mjesto .NET de
 2. Napravite import baze podataka (MS SQL Server Management Studio) na localhostu pomoću već exportirane baze podataka. Datoteka za import nalazi na putanji "RegistarAutomobila\DatabaseExport\RegistarAutomobila.bacpac". Kratak video tutorial (trajanje 2:01 min) koji objašnjava kako importati .bacpac datoteku na vlastitu bazu podataka - https://www.youtube.com/watch?v=wNwjT6XJj2o
 3. Otvorite datoteku "ReegistarAutomobila.sln"
 4. Pritisnite tipku F5
+5. Prijavite se kao administrator sa korisničkim imenom "admin" i lozinkom "1234" ili kao običan korisnik sa korisničkim imenom "korisnik01" i lozinkom "1234".
 
 ## KORISNIČKI ZAHTJEVI (zadano od strane poduzeća)
 
