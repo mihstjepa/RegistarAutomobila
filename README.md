@@ -2,6 +2,12 @@
 Ova WinForms aplikacija izrađena je u sklopu testiranja za radno mjesto .NET developer-a u poduzeću INPRO d.o.o.
 Više informacija dostupno je na Wiki stranici ovog repozitorija (https://github.com/mihstjepa/RegistarAutomobila/wiki/Opis-aplikacije).
 
+## Kako isprobati aplikaciju na vašem računalu?
+1. Preuzmite sve datoteke repozitorija
+2. Napravite import baze podataka (MS SQL Server Management Studio) na localhostu pomoću već exportirane baze podataka. Datoteka za import nalazi na putanji "RegistarAutomobila\DatabaseExport\RegistarAutomobila.bacpac". Kratak video tutorial (trajanje 2:01 min) koji objašnjava kako importati .bacpac datoteku na vlastitu bazu podataka - https://www.youtube.com/watch?v=wNwjT6XJj2o
+3. Otvorite datoteku "ReegistarAutomobila.sln"
+4. Pritisnite tipku F5
+
 ## KORISNIČKI ZAHTJEVI (zadano od strane poduzeća)
 
 Bitno je kod ovog zadatka držati se nekih pravila, jer te stvari se koriste kod nas pa je dobro da se na njih koncentriraš:
@@ -38,6 +44,8 @@ Sve ostale uloge mogu vršiti CRUD samo nad Markama automobila i Modelima automo
 
 ## BAZA PODATAKA
 Baza podataka napravljena je u alatu Microsoft SQL Server Management Studio na localhost-u. Sastoji se od četiri tablice i nad svima je u aplikaciji implementirana CRUD funkcionalnost putem korisničkog sučelja.
+### ERA model
+![](https://github.com/mihstjepa/RegistarAutomobila/blob/master/ERAmodel(v1.0).png)
 
 
 
