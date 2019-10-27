@@ -1,6 +1,5 @@
 # REGISTAR AUTOMOBILA
 Ova WinForms aplikacija izrađena je u sklopu testiranja za radno mjesto .NET developer-a u poduzeću INPRO d.o.o.
-Više informacija dostupno je na Wiki stranici ovog repozitorija (https://github.com/mihstjepa/RegistarAutomobila/wiki/Opis-aplikacije).
 
 ## Kako isprobati aplikaciju na vašem računalu?
 1. Preuzmite sve datoteke repozitorija
