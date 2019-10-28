@@ -20,6 +20,7 @@ namespace RegistarAutomobila.Forme
         public FrmModeliAutomobila()
         {
             InitializeComponent();
+            AutentikacijaUloge();
             OsvjeziPrikaz();
         }
 
@@ -249,6 +250,19 @@ namespace RegistarAutomobila.Forme
             dgvSveMarke.Columns[4].HeaderText = "Cijena (kn)";
             dgvSveMarke.Columns[5].HeaderText = "Marka";
             dgvSveMarke.Columns[6].HeaderText = "Unio korisnik";
+        }
+
+        /// <summary>
+        /// Provjerava ulogu logiranog korisnika i sakriva gumbe ovisno o pravima uloge.
+        /// </summary>
+        private void AutentikacijaUloge()
+        {
+            if (LoginPodaci.Uloga != 1 && LoginPodaci.Uloga != 2)
+            {
+                btnAzuriraj.Visible = false;
+                btnNoviUnos.Visible = false;
+                btnObriši.Visible = false;
+            }
         }
     }
 }

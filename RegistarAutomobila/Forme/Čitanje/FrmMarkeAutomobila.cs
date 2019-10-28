@@ -23,6 +23,7 @@ namespace RegistarAutomobila.Forme
         public FrmMarkeAutomobila()
         {
             InitializeComponent();
+            AutentikacijaUloge();
             OsvjeziPrikaz();
         }
 
@@ -150,6 +151,20 @@ namespace RegistarAutomobila.Forme
             };
 
             return selektiranaMarka;
+        }
+
+
+        /// <summary>
+        /// Provjerava ulogu logiranog korisnika i sakriva gumbe ovisno o pravima uloge.
+        /// </summary>
+        private void AutentikacijaUloge()
+        {
+            if (LoginPodaci.Uloga != 1 && LoginPodaci.Uloga != 2)
+            {
+                btnAzuriraj.Visible = false;
+                btnNoviUnos.Visible = false;
+                btnObriši.Visible = false;
+            }
         }
     }
 }

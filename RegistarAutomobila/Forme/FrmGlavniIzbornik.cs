@@ -29,6 +29,7 @@ namespace RegistarAutomobila
                 btnKorisnici.Visible = false;
                 btnUloge.Visible = false;
             }
+            
         }
 
         /// <summary>

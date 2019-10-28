@@ -222,6 +222,8 @@ namespace RegistarAutomobila.Forme
             dgvSviKorisnici.Columns[5].HeaderText = "Naziv uloge";
         }
 
+        
+
         private void FrmUpravljanjeKorisnika_Load(object sender, EventArgs e)
         {
 
