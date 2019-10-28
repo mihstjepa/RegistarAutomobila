@@ -10,10 +10,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Korime" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Lozinka" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Korime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lozinka" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UlogaId" Type="int" />
         </EntityType>
         <EntityType Name="MarkaAutomobila">
@@ -21,15 +21,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Drzava" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Drzava" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ModelAutomobila">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GodinaProizvodnje" Type="int" Nullable="false" />
           <Property Name="SnagaMotora" Type="int" Nullable="false" />
           <Property Name="Cijena" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -41,7 +41,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Korisnik_Uloga">
           <End Role="Uloga" Type="Self.Uloga" Multiplicity="0..1" />
@@ -126,10 +126,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Korime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Lozinka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Korime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lozinka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UlogaId" Type="Int32" />
           <NavigationProperty Name="Uloga" Relationship="RegistarAutomobilaModel.FK_Korisnik_Uloga" FromRole="Korisnik" ToRole="Uloga" />
           <NavigationProperty Name="ModelAutomobila" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_Korisnik" FromRole="Korisnik" ToRole="ModelAutomobila" />
@@ -139,8 +139,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Drzava" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Drzava" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ModelAutomobila" Relationship="RegistarAutomobilaModel.FK_ModelAutomobila_MarkaAutomobila" FromRole="MarkaAutomobila" ToRole="ModelAutomobila" />
         </EntityType>
         <EntityType Name="ModelAutomobila">
@@ -148,7 +148,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GodinaProizvodnje" Type="Int32" Nullable="false" />
           <Property Name="SnagaMotora" Type="Int32" Nullable="false" />
           <Property Name="Cijena" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
@@ -162,7 +162,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Korisnik" Relationship="RegistarAutomobilaModel.FK_Korisnik_Uloga" FromRole="Uloga" ToRole="Korisnik" />
         </EntityType>
         <Association Name="FK_Korisnik_Uloga">
