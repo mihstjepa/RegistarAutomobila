@@ -38,9 +38,9 @@ Ta druga forma je i glavna forma i bitnija. Također svaki unos se isto može un
 Iako u testnom zadatku nije bilo zadano, aplikacija ima dodatnu funkcionalnost autentikacije korisnika (Login) koji ovisno o dodjeljenim ulogama (npr. Admin, Običan korisnik, Moderator...) imaju restrikcije nad korištenjem pune funkcionalnosti aplikacije. Korisnik se može prijaviti u sustav tek kada mu Administrator kreira korisnički račun. Također, implementirana je validacija unosa podataka nad svim formama.
 
 ### PRAVA ULOGA:
-Za sada je jedina implementirana restrikcija ovisno o ulozi (pravima) korisnika ta da korisnik koji je "Administrator" može vršiti CRUD nad Markama automobila, Modelima automobila, Korisnicima i Ulogama.
-
-Sve ostale uloge mogu vršiti CRUD samo nad Markama automobila i Modelima automobila.
+* "Admin" - CRUD nad Markama automobila, Modelima automobila, Korisnicima i Ulogama.
+* "Korisnik" - CRUD nad Markama automobila i Modelima automobila
+* "Gost" - R (samo čitanje) nad Markama automobila i Modelima automobila
 
 ## BAZA PODATAKA
 Baza podataka napravljena je u alatu Microsoft SQL Server Management Studio na localhost-u. Sastoji se od četiri tablice i nad svima je u aplikaciji implementirana CRUD funkcionalnost putem korisničkog sučelja.
