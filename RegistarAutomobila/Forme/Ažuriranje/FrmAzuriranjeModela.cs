@@ -119,6 +119,11 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             PopuniComboBoxMarka();
         }
 
+        /// <summary>
+        /// Provodi validaciju unesenih podataka za ažuriranje postojećeg
+        /// modela automobila.
+        /// </summary>
+        /// <returns>Poruku za ERROR messagebox.</returns>
         private string ProvjeraUnosa()
         {
             string poruka = "";
@@ -182,6 +187,10 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             return poruka;
         }
 
+        /// <summary>
+        /// Sprema ažurirane promjene nad postojećim modelom automobila
+        /// u bazi podataka.
+        /// </summary>
         private void AzurirajModel()
         {
             
@@ -214,7 +223,10 @@ namespace RegistarAutomobila.Forme.Ažuriranje
                 db.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Dohvaća selektiranu marku automobila u DGV-u.
+        /// </summary>
+        /// <returns>Instancu objekta tipa MarkaAutomobila.</returns>
         private MarkaAutomobila DohvatiMarkuIzComboBoxa()
         {
             MarkaAutomobila selektiranaMarka = new MarkaAutomobila();

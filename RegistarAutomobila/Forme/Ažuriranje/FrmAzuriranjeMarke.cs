@@ -110,6 +110,11 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             this.Close();
         }
 
+        /// <summary>
+        /// Provodi validaciju unseneih podataka za ažuriranje
+        /// postojeće marke automobila.
+        /// </summary>
+        /// <returns>Poruke za ERROR messagebox.</returns>
         private string ProvjeraUnosa()
         {
             string errorPoruka = "";

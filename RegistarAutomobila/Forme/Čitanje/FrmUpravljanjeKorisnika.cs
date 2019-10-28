@@ -137,6 +137,12 @@ namespace RegistarAutomobila.Forme
                 db.SaveChanges();
         }
 
+        /// <summary>
+        /// Poziva metode za pretragu korisnika po ključnoj riječi ukoliko
+        /// je odabran filter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTrazi_Click(object sender, EventArgs e)
         {
             if (comboBoxFilter.SelectedItem.ToString() != null)
@@ -149,11 +155,21 @@ namespace RegistarAutomobila.Forme
             }
         }
 
+        /// <summary>
+        /// Poziva metodu za osvježavanje prikaza u DGV-u.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOsvjeziPrikaz_Click(object sender, EventArgs e)
         {
             OsvjeziPrikaz();
         }
 
+        /// <summary>
+        /// Ispisuje rezultate pretrage po ključnoj riječi u DGV
+        /// ovisno o odabranom filteru.
+        /// </summary>
+        /// <param name="odabraniFilter"></param>
         private void Trazi(string odabraniFilter)
         {
             if (odabraniFilter == "Sve" || odabraniFilter == "")

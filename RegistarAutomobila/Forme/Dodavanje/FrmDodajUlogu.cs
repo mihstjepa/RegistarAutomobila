@@ -104,6 +104,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
             return poruka;
         }
 
+        /// <summary>
+        /// Sprema unesenu ulogu u bazu podataka.
+        /// </summary>
         private void SpremiNovuUlogu()
         {
             Uloga novaUloga = new Uloga()

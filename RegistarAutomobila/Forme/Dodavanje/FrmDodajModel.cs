@@ -15,6 +15,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
     {
         DBContext db = new DBContext();
 
+        /// <summary>
+        /// Konstruktor forme.
+        /// </summary>
         public FrmDodajModel()
         {
             InitializeComponent();
@@ -161,7 +164,6 @@ namespace RegistarAutomobila.Forme.Dodavanje
             if (poruka != "")
             {
                 MessageBox.Show(poruka);
-                OsvjeziPrikaz();
             }
             else
             {
@@ -175,6 +177,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
             }
         }
 
+        /// <summary>
+        /// Sprema novi model automobila u bazu podataka.
+        /// </summary>
         private void SpremiNoviModel()
         {
             ModelAutomobila noviModel = new ModelAutomobila()

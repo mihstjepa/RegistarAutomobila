@@ -97,6 +97,10 @@ namespace RegistarAutomobila.Forme.Ažuriranje
                 db.SaveChanges();
         }
 
+        /// <summary>
+        /// Provodi validaciju unesenih podataka kod ažuriranja postojeće uloge.
+        /// </summary>
+        /// <returns>Poruku za ERROR messagebox.</returns>
         private string ProvjeraUnosa()
         {
             string errorPoruka = "";

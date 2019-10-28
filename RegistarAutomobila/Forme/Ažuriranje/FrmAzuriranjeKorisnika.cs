@@ -217,6 +217,9 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             return poruka;
         }
 
+        /// <summary>
+        /// Ispisuje podatke o korisnicima na DGV i popunjuje ComboBox za odabir uloge.
+        /// </summary>
         private void OsvjeziPrikaz()
         {
             txtBoxSifra.Text = this.Id.ToString();
@@ -227,6 +230,9 @@ namespace RegistarAutomobila.Forme.Ažuriranje
             PopuniComboBoxUloga();
         }
 
+        /// <summary>
+        /// Sprema ažurirane promjene nad postojećim korisnikom u bazi podataka.
+        /// </summary>
         private void AzurirajKorisnika()
         {
             var postojeciKorisnik = db.Korisnik.Find(this.Id);
