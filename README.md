@@ -55,5 +55,6 @@ Baza podataka napravljena je u alatu Microsoft SQL Server Management Studio na l
 * Windows Forms
 * Database-First pristup (Entity Framework)
 * LINQ
+* RegEx
 * OOP
 * Microsoft SQL Server Management Studio
