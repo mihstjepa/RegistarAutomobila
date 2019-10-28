@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -49,7 +50,6 @@ namespace RegistarAutomobila.Forme.Dodavanje
             if (poruka != "")
             {
                 MessageBox.Show(poruka);
-                OsvjeziPrikaz();
             }
             else
             {
@@ -130,9 +130,9 @@ namespace RegistarAutomobila.Forme.Dodavanje
             {
                 poruka = poruka + $"Nije uneseno korisničko ime!\r\n";
             }
-            else if (txtBoxKorime.Text.Length > 50)
+            else if (txtBoxKorime.Text.Length > 15 || txtBoxKorime.Text.Length < 5)
             {
-                poruka = poruka + $"Korisničko ime smije imati maksimalno 50 znakova!\r\n";
+                poruka = poruka + $"Korisničko ime mora sadržavati između 5 i 15 znakova!\r\n";
             }
             else
             {
@@ -155,7 +155,7 @@ namespace RegistarAutomobila.Forme.Dodavanje
             }
             else if (txtBoxIme.Text.Length > 50)
             {
-                poruka = poruka + $"Ime smije imati maksimalno 50 znakova!\r\n";
+                poruka = poruka + $"Ime mora imati maksimalno 50 znakova!\r\n";
             }
 
             //  PREZIME
@@ -165,17 +165,39 @@ namespace RegistarAutomobila.Forme.Dodavanje
             }
             else if (txtBoxPrezime.Text.Length > 50)
             {
-                poruka = poruka + $"Prezime smije imati maksimalno 50 znakova!\r\n";
+                poruka = poruka + $"Prezime mora imati maksimalno 50 znakova!\r\n";
             }
 
             //  LOZINKA
+            var sadrziBrojku = new Regex(@"[0-9]+");
+            var sadrziUpperChar = new Regex(@"[A-Z]+");
+            var sadrziMin8Znakova = new Regex(@".{8,}");
+
             if (String.IsNullOrEmpty(txtBoxLozinka.Text))
             {
                 poruka = poruka + $"Nije unesena lozinka!\r\n";
             }
+            else if (!sadrziMin8Znakova.IsMatch(txtBoxLozinka.Text))
+            {
+                poruka = poruka + $"Lozinka mora sadržavati minimalno 8 znakova!\r\n";
+            }
+            else if (!sadrziBrojku.IsMatch(txtBoxLozinka.Text))
+            {
+                poruka = poruka + $"Lozinka mora sadržavati barem jednu brojku!\r\n";
+            }
+            else if (!sadrziUpperChar.IsMatch(txtBoxLozinka.Text))
+            {
+                poruka = poruka + $"Lozinka mora sadržavati barem jedno veliko slovo!\r\n";
+            }
             else if (txtBoxLozinka.Text.Length > 50)
             {
-                poruka = poruka + $"Lozinka smije imati maksimalno 50 znakova!\r\n";
+                poruka = poruka + $"Lozinka mora imati maksimalno 50 znakova!\r\n";
+            }
+
+            //  POTVRDA LOZINKE
+            else if (txtBoxLozinka.Text != txtBoxPotvrdaLozinke.Text)
+            {
+                poruka = poruka + $"Potvrđena lozinka nije ista!\r\n";
             }
 
             return poruka;
