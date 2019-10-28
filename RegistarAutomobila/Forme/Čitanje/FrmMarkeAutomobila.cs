@@ -112,6 +112,8 @@ namespace RegistarAutomobila.Forme
             dgvSveMarke.Columns[0].HeaderText = "Šifra";
             dgvSveMarke.Columns[1].HeaderText = "Naziv";
             dgvSveMarke.Columns[2].HeaderText = "Država";
+
+            comboBoxFilter.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -165,6 +167,52 @@ namespace RegistarAutomobila.Forme
                 btnNoviUnos.Visible = false;
                 btnObriši.Visible = false;
             }
+        }
+
+        private void btnTrazi_Click(object sender, EventArgs e)
+        {
+            if (comboBoxFilter.SelectedItem.ToString() != null)
+            {
+                Trazi(comboBoxFilter.SelectedItem.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Morate odabrati filter za pretragu!");
+            }
+        }
+
+        private void btnOsvjeziPrikaz_Click(object sender, EventArgs e)
+        {
+            OsvjeziPrikaz();
+        }
+
+        private void Trazi(string odabraniFilter)
+        {
+            if (odabraniFilter == "Sve" || odabraniFilter == "")
+            {
+                var upit = from m in db.MarkaAutomobila
+                           where m.Naziv.ToString().Contains(txtBoxKljucnaRijec.Text) || m.Drzava.ToString().Contains(txtBoxKljucnaRijec.Text)
+                           select new { m.Id, m.Naziv, m.Drzava };
+                dgvSveMarke.DataSource = upit.ToList();               
+            }
+            else if (odabraniFilter == "Naziv")
+            {
+                var upit = from m in db.MarkaAutomobila
+                           where m.Naziv.ToString().Contains(txtBoxKljucnaRijec.Text)
+                           select new { m.Id, m.Naziv, m.Drzava };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+            else if (odabraniFilter == "Država")
+            {
+                var upit = from m in db.MarkaAutomobila
+                           where m.Drzava.ToString().Contains(txtBoxKljucnaRijec.Text)
+                           select new { m.Id, m.Naziv, m.Drzava };
+                dgvSveMarke.DataSource = upit.ToList();
+            }
+                
+            dgvSveMarke.Columns[0].HeaderText = "Šifra";
+            dgvSveMarke.Columns[1].HeaderText = "Naziv";
+            dgvSveMarke.Columns[2].HeaderText = "Država";
         }
     }
 }

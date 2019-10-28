@@ -31,12 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMarkeAutomobila));
             this.labelNaslov = new System.Windows.Forms.Label();
             this.btnNatrag = new System.Windows.Forms.Button();
-            this.lblPregledSvihMarki = new System.Windows.Forms.Label();
             this.dgvSveMarke = new System.Windows.Forms.DataGridView();
             this.btnNoviUnos = new System.Windows.Forms.Button();
             this.btnObriši = new System.Windows.Forms.Button();
             this.btnAzuriraj = new System.Windows.Forms.Button();
+            this.btnOsvjeziPrikaz = new System.Windows.Forms.Button();
+            this.groupBoxTrazilica = new System.Windows.Forms.GroupBox();
+            this.lblKljucnaRijec = new System.Windows.Forms.Label();
+            this.comboBoxFilter = new System.Windows.Forms.ComboBox();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.btnTrazi = new System.Windows.Forms.Button();
+            this.txtBoxKljucnaRijec = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSveMarke)).BeginInit();
+            this.groupBoxTrazilica.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelNaslov
@@ -68,15 +75,6 @@
             this.btnNatrag.Text = "Natrag";
             this.btnNatrag.UseVisualStyleBackColor = false;
             this.btnNatrag.Click += new System.EventHandler(this.btnNatrag_Click);
-            // 
-            // lblPregledSvihMarki
-            // 
-            this.lblPregledSvihMarki.AutoSize = true;
-            this.lblPregledSvihMarki.Location = new System.Drawing.Point(345, 148);
-            this.lblPregledSvihMarki.Name = "lblPregledSvihMarki";
-            this.lblPregledSvihMarki.Size = new System.Drawing.Size(340, 29);
-            this.lblPregledSvihMarki.TabIndex = 6;
-            this.lblPregledSvihMarki.Text = "Pregled svih marki automobila:";
             // 
             // dgvSveMarke
             // 
@@ -147,17 +145,109 @@
             this.btnAzuriraj.UseVisualStyleBackColor = false;
             this.btnAzuriraj.Click += new System.EventHandler(this.btnAzuriraj_Click);
             // 
+            // btnOsvjeziPrikaz
+            // 
+            this.btnOsvjeziPrikaz.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnOsvjeziPrikaz.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnOsvjeziPrikaz.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnOsvjeziPrikaz.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnOsvjeziPrikaz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOsvjeziPrikaz.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOsvjeziPrikaz.ForeColor = System.Drawing.Color.Black;
+            this.btnOsvjeziPrikaz.Location = new System.Drawing.Point(350, 138);
+            this.btnOsvjeziPrikaz.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOsvjeziPrikaz.Name = "btnOsvjeziPrikaz";
+            this.btnOsvjeziPrikaz.Size = new System.Drawing.Size(144, 36);
+            this.btnOsvjeziPrikaz.TabIndex = 31;
+            this.btnOsvjeziPrikaz.Text = "Osvježi prikaz";
+            this.btnOsvjeziPrikaz.UseVisualStyleBackColor = false;
+            this.btnOsvjeziPrikaz.Click += new System.EventHandler(this.btnOsvjeziPrikaz_Click);
+            // 
+            // groupBoxTrazilica
+            // 
+            this.groupBoxTrazilica.Controls.Add(this.lblKljucnaRijec);
+            this.groupBoxTrazilica.Controls.Add(this.comboBoxFilter);
+            this.groupBoxTrazilica.Controls.Add(this.lblFilter);
+            this.groupBoxTrazilica.Controls.Add(this.btnTrazi);
+            this.groupBoxTrazilica.Controls.Add(this.txtBoxKljucnaRijec);
+            this.groupBoxTrazilica.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.groupBoxTrazilica.Location = new System.Drawing.Point(591, 60);
+            this.groupBoxTrazilica.Name = "groupBoxTrazilica";
+            this.groupBoxTrazilica.Size = new System.Drawing.Size(395, 114);
+            this.groupBoxTrazilica.TabIndex = 30;
+            this.groupBoxTrazilica.TabStop = false;
+            this.groupBoxTrazilica.Text = "Tražilica";
+            // 
+            // lblKljucnaRijec
+            // 
+            this.lblKljucnaRijec.AutoSize = true;
+            this.lblKljucnaRijec.ForeColor = System.Drawing.Color.Black;
+            this.lblKljucnaRijec.Location = new System.Drawing.Point(3, 76);
+            this.lblKljucnaRijec.Name = "lblKljucnaRijec";
+            this.lblKljucnaRijec.Size = new System.Drawing.Size(150, 29);
+            this.lblKljucnaRijec.TabIndex = 29;
+            this.lblKljucnaRijec.Text = "Ključna riječ:";
+            // 
+            // comboBoxFilter
+            // 
+            this.comboBoxFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFilter.FormattingEnabled = true;
+            this.comboBoxFilter.Items.AddRange(new object[] {
+            "Sve",
+            "Naziv",
+            "Država"});
+            this.comboBoxFilter.Location = new System.Drawing.Point(105, 30);
+            this.comboBoxFilter.Name = "comboBoxFilter";
+            this.comboBoxFilter.Size = new System.Drawing.Size(148, 37);
+            this.comboBoxFilter.TabIndex = 26;
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.ForeColor = System.Drawing.Color.Black;
+            this.lblFilter.Location = new System.Drawing.Point(55, 33);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(74, 29);
+            this.lblFilter.TabIndex = 28;
+            this.lblFilter.Text = "Filter:";
+            // 
+            // btnTrazi
+            // 
+            this.btnTrazi.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnTrazi.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnTrazi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnTrazi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnTrazi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTrazi.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrazi.ForeColor = System.Drawing.Color.Black;
+            this.btnTrazi.Location = new System.Drawing.Point(261, 73);
+            this.btnTrazi.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTrazi.Name = "btnTrazi";
+            this.btnTrazi.Size = new System.Drawing.Size(127, 28);
+            this.btnTrazi.TabIndex = 24;
+            this.btnTrazi.Text = "Traži";
+            this.btnTrazi.UseVisualStyleBackColor = false;
+            this.btnTrazi.Click += new System.EventHandler(this.btnTrazi_Click);
+            // 
+            // txtBoxKljucnaRijec
+            // 
+            this.txtBoxKljucnaRijec.Location = new System.Drawing.Point(105, 73);
+            this.txtBoxKljucnaRijec.Name = "txtBoxKljucnaRijec";
+            this.txtBoxKljucnaRijec.Size = new System.Drawing.Size(149, 36);
+            this.txtBoxKljucnaRijec.TabIndex = 23;
+            // 
             // FrmMarkeAutomobila
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1820, 949);
+            this.Controls.Add(this.btnOsvjeziPrikaz);
+            this.Controls.Add(this.groupBoxTrazilica);
             this.Controls.Add(this.btnAzuriraj);
             this.Controls.Add(this.btnObriši);
             this.Controls.Add(this.btnNoviUnos);
             this.Controls.Add(this.dgvSveMarke);
-            this.Controls.Add(this.lblPregledSvihMarki);
             this.Controls.Add(this.btnNatrag);
             this.Controls.Add(this.labelNaslov);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -167,6 +257,8 @@
             this.Text = "Marke automobila";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvSveMarke)).EndInit();
+            this.groupBoxTrazilica.ResumeLayout(false);
+            this.groupBoxTrazilica.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,10 +268,16 @@
 
         private System.Windows.Forms.Label labelNaslov;
         private System.Windows.Forms.Button btnNatrag;
-        private System.Windows.Forms.Label lblPregledSvihMarki;
         private System.Windows.Forms.DataGridView dgvSveMarke;
         private System.Windows.Forms.Button btnNoviUnos;
         private System.Windows.Forms.Button btnObriši;
         private System.Windows.Forms.Button btnAzuriraj;
+        private System.Windows.Forms.Button btnOsvjeziPrikaz;
+        private System.Windows.Forms.GroupBox groupBoxTrazilica;
+        private System.Windows.Forms.Label lblKljucnaRijec;
+        private System.Windows.Forms.ComboBox comboBoxFilter;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.Button btnTrazi;
+        private System.Windows.Forms.TextBox txtBoxKljucnaRijec;
     }
 }
