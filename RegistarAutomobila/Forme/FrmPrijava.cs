@@ -13,11 +13,19 @@ namespace RegistarAutomobila.Forme
 {
     public partial class FrmPrijava : Form
     {
+        /// <summary>
+        /// Konstruktor forme.
+        /// </summary>
         public FrmPrijava()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Poziva metode za provjeru unesenih korisničkih podataka i dohvaća ulogu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPrijaviSe_Click(object sender, EventArgs e)
         {
             bool provjeraUnosa = ProvjeriPodatkeZaPrijavu(txtBoxKorime.Text, txtBoxLozinka.Text);
@@ -50,10 +58,10 @@ namespace RegistarAutomobila.Forme
                 LoginPodaci.Id = DohvatiId(txtBoxKorime.Text, txtBoxLozinka.Text);
                 LoginPodaci.Korime = txtBoxKorime.Text;
                 LoginPodaci.Uloga = DohvatiUlogu(txtBoxKorime.Text, txtBoxLozinka.Text);
-                
-                FrmGlavniIzbornik glavniIzbornik = new FrmGlavniIzbornik();
-                glavniIzbornik.ShowDialog();
+
                 this.Hide();
+                FrmGlavniIzbornik glavniIzbornik = new FrmGlavniIzbornik();
+                glavniIzbornik.ShowDialog();               
                 this.Close();
             }
             else if (provjeraUnosa == false)

@@ -15,9 +15,7 @@ namespace RegistarAutomobila
     public partial class FrmGlavniIzbornik : Form
     {
         /// <summary>
-        /// Konstruktor forme koji inicijalizira formu, ispisuje korisničko ime
-        /// prijavljenog korisnika u gornji desni kut i sakriva gumbe za upravljanje
-        /// korisnicima i ulogama ovisno o ulozi prijavljenog korisnika.
+        /// Konstruktor forme.
         /// </summary>
         public FrmGlavniIzbornik()
         {

@@ -83,7 +83,7 @@
             this.dgvSveMarke.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSveMarke.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgvSveMarke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSveMarke.Location = new System.Drawing.Point(350, 180);
+            this.dgvSveMarke.Location = new System.Drawing.Point(350, 234);
             this.dgvSveMarke.MultiSelect = false;
             this.dgvSveMarke.Name = "dgvSveMarke";
             this.dgvSveMarke.RowTemplate.Height = 28;
@@ -100,7 +100,7 @@
             this.btnNoviUnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoviUnos.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNoviUnos.ForeColor = System.Drawing.Color.Black;
-            this.btnNoviUnos.Location = new System.Drawing.Point(350, 450);
+            this.btnNoviUnos.Location = new System.Drawing.Point(350, 504);
             this.btnNoviUnos.Margin = new System.Windows.Forms.Padding(4);
             this.btnNoviUnos.Name = "btnNoviUnos";
             this.btnNoviUnos.Size = new System.Drawing.Size(127, 39);
@@ -118,7 +118,7 @@
             this.btnObriši.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObriši.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnObriši.ForeColor = System.Drawing.Color.Black;
-            this.btnObriši.Location = new System.Drawing.Point(859, 450);
+            this.btnObriši.Location = new System.Drawing.Point(859, 504);
             this.btnObriši.Margin = new System.Windows.Forms.Padding(4);
             this.btnObriši.Name = "btnObriši";
             this.btnObriši.Size = new System.Drawing.Size(127, 39);
@@ -136,7 +136,7 @@
             this.btnAzuriraj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAzuriraj.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAzuriraj.ForeColor = System.Drawing.Color.Black;
-            this.btnAzuriraj.Location = new System.Drawing.Point(724, 450);
+            this.btnAzuriraj.Location = new System.Drawing.Point(724, 504);
             this.btnAzuriraj.Margin = new System.Windows.Forms.Padding(4);
             this.btnAzuriraj.Name = "btnAzuriraj";
             this.btnAzuriraj.Size = new System.Drawing.Size(127, 39);
@@ -154,7 +154,7 @@
             this.btnOsvjeziPrikaz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOsvjeziPrikaz.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOsvjeziPrikaz.ForeColor = System.Drawing.Color.Black;
-            this.btnOsvjeziPrikaz.Location = new System.Drawing.Point(350, 138);
+            this.btnOsvjeziPrikaz.Location = new System.Drawing.Point(350, 192);
             this.btnOsvjeziPrikaz.Margin = new System.Windows.Forms.Padding(4);
             this.btnOsvjeziPrikaz.Name = "btnOsvjeziPrikaz";
             this.btnOsvjeziPrikaz.Size = new System.Drawing.Size(144, 36);
@@ -171,7 +171,7 @@
             this.groupBoxTrazilica.Controls.Add(this.btnTrazi);
             this.groupBoxTrazilica.Controls.Add(this.txtBoxKljucnaRijec);
             this.groupBoxTrazilica.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.groupBoxTrazilica.Location = new System.Drawing.Point(591, 60);
+            this.groupBoxTrazilica.Location = new System.Drawing.Point(591, 114);
             this.groupBoxTrazilica.Name = "groupBoxTrazilica";
             this.groupBoxTrazilica.Size = new System.Drawing.Size(395, 114);
             this.groupBoxTrazilica.TabIndex = 30;
