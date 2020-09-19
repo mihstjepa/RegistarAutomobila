@@ -1,0 +1,6 @@
+projectKey=registar-automobila
+serverUrl=http://localhost:9000
+serverVersion=8.4.1.35646
+dashboardUrl=http://localhost:9000/dashboard?id=registar-automobila
+ceTaskId=AXSMBUU1mk5HtX5HTRwY
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXSMBUU1mk5HtX5HTRwY
